@@ -9,14 +9,16 @@ artifacts into the v3 layout and avoids fold-level CSVs in the destination.
 from __future__ import annotations
 
 import json
+import os
 import re
 from pathlib import Path
 
 import pandas as pd
 
 
-V2 = Path("/home/lvalenzuela/group_storage_nancy/lvalenzuela_SR_results/0_0000000000_a_Marta_Inria_v2/marta_omar_repro")
-V3 = Path("/home/lvalenzuela/group_storage_nancy/lvalenzuela_SR_results/0_0000000000_a_Marta_Inria_v3")
+REPO = Path(__file__).resolve().parents[2]
+V2 = Path(os.environ.get("ASPERGILLUS_LEGACY_ROOT", REPO / "data/legacy_v2"))
+V3 = Path(os.environ.get("ASPERGILLUS_REPO_ROOT", REPO))
 FAMILY = "family1_no_clr_microbiome_raw"
 FAMILY_LABEL = "Familia 1: microbioma sin CLR"
 

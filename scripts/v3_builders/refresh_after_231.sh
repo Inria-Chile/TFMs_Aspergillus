@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-V3=/home/lvalenzuela/group_storage_nancy/lvalenzuela_SR_results/0_0000000000_a_Marta_Inria_v3
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+V3="${ASPERGILLUS_REPO_ROOT:-$REPO_ROOT}"
 CURRENT="$V3/outputs/231_seed_metrics_shap_consolidation_current_20260710_0251"
 COMBINED="$V3/outputs/232_combined_historical_and_current_seed_shap_20260710_0251"
 HEATMAPS="$V3/outputs/233_latest_integrated_importance_heatmaps_20260710_0251"

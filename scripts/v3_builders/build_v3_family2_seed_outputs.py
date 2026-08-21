@@ -9,14 +9,16 @@ level into v3; fold-level CSVs remain in v2 provenance tables.
 from __future__ import annotations
 
 import json
+import os
 import re
 from pathlib import Path
 
 import pandas as pd
 
 
-V2 = Path("/home/lvalenzuela/group_storage_nancy/lvalenzuela_SR_results/0_0000000000_a_Marta_Inria_v2/marta_omar_repro")
-V3 = Path("/home/lvalenzuela/group_storage_nancy/lvalenzuela_SR_results/0_0000000000_a_Marta_Inria_v3")
+REPO = Path(__file__).resolve().parents[2]
+V2 = Path(os.environ.get("ASPERGILLUS_LEGACY_ROOT", REPO / "data/legacy_v2"))
+V3 = Path(os.environ.get("ASPERGILLUS_REPO_ROOT", REPO))
 FAMILY = "family2_full_microbiome_clr_raw_env"
 FAMILY_LABEL = "Familia 2: microbioma completo CLR + ambiente crudo"
 
