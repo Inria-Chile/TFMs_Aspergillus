@@ -8,5 +8,6 @@ data/raw/*
 data/processed/*
 results/*
 !results/.gitkeep
+outputs/
 *.log
 .env
