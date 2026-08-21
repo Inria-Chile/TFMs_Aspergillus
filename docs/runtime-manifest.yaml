@@ -13,8 +13,11 @@ tabiclv2:
   version: null
   commit: null
 pysr:
-  python_version: null
-  symbolic_regression_jl_version: null
+  python_version: 1.5.9
+  environment: cyt_models_nancy_clone_sophia
+  symbolic_regression_jl_version: 1.11.3
+  symbolic_regression_jl_path: /home/lvalenzuela/.julia/packages/SymbolicRegression/L5TJa
+  julia_compatibility: '1.10'
 checkpoints:
   classifier: tabicl-classifier-v2-20260212.ckpt
   regressor: tabicl-regressor-v2-20260212.ckpt

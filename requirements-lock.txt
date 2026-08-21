@@ -14,8 +14,8 @@ tabicl==2.0.2
 # xgboost==RECORD_FROM_GPU_ENV
 # tabpfn==RECORD_FROM_GPU_ENV
 # tabiclv2==RECORD_FROM_GPU_ENV_OR_COMMIT
-# pysr==RECORD_FROM_PYSR_ENV
-# SymbolicRegression.jl==RECORD_FROM_JULIA_MANIFEST
+pysr==1.5.9
+# SymbolicRegression.jl==1.11.3  # Julia 1.10 compatibility declared by Project.toml
 # CUDA==RECORD_FROM_GPU_ENV
 
 # Model checkpoints and hashes belong in docs/runtime-manifest.yaml.
