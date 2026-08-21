@@ -27,8 +27,8 @@ REPO = Path(__file__).resolve().parents[2]
 V2 = REPO
 V3 = REPO
 
-MODEL_LABEL = {"tabpfn": "TFN/TabPFN", "tabiclv2": "TabICLv2", "xgboost": "XGBoost", "tabfm": "TabFM"}
-MODEL_DIR = {"tabpfn": "tabpfn", "tabiclv2": "tabiclv2", "xgboost": "xgboost", "tabfm": "tabfm"}
+MODEL_LABEL = {"random_forest": "Random Forest", "tabpfn": "TFN/TabPFN", "tabiclv2": "TabICLv2", "xgboost": "XGBoost", "tabfm": "TabFM"}
+MODEL_DIR = {"random_forest": "random_forest", "tabpfn": "tabpfn", "tabiclv2": "tabiclv2", "xgboost": "xgboost", "tabfm": "tabfm"}
 SCENARIO_LABEL = {"A_environment": "A", "B_microbiome": "B", "C_environment_microbiome": "C"}
 TASK_LABEL = {
     "occurrence": "Clasificacion",
