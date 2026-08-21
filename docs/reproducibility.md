@@ -6,4 +6,9 @@ The public repository should contain scripts and small metadata only. Raw/privat
 
 ## Migration from V3
 
-The source implementation is `/home/lvalenzuela/group_storage_nancy/lvalenzuela_SR_results/0_0000000000_a_Marta_Inria_v3`. The final validated result tables are in `outputs/403_final_tables_100_replicas_20260816`. Historical monitoring logs are provenance, not runtime inputs. Generated figures are derived artifacts and should be regenerated in CI or a documented Grid'5000 recipe rather than committed in bulk.
+The source implementation is the tagged V3 release used to prepare the paper.
+The final validated result tables are identified by the artifact
+`403_final_tables_100_replicas_20260816`. Historical monitoring logs are
+provenance, not runtime inputs. Generated figures are derived artifacts and
+should be regenerated in CI or a documented Grid'5000 recipe rather than
+committed in bulk.
