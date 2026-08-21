@@ -1,0 +1,36 @@
+project_name: tfms_aspergillus
+random_seeds: [0, 1, 2]
+data:
+  input_table: data/raw/aspergillus_predictors.csv
+  id_column: Sample
+  target_column: Aspergillus_abundance
+  microbiome_dictionary: data/raw/01A_dictionary_taxa.csv
+validation:
+  classification:
+    strategy: repeated_stratified_kfold
+    n_splits: 15
+    n_repeats: 1
+  regression_positive:
+    strategy: leave_one_out
+  regression_zero_inflated:
+    strategy: kfold
+    n_splits: 18
+preprocessing:
+  clr_pseudocount: 1.0e-06
+  feature_selection_fit_scope: training_fold_only
+models:
+  random_forest:
+    n_estimators: 500
+    class_weight: balanced
+    max_features: sqrt
+  xgboost:
+    objective_classification: binary:logistic
+    objective_regression: reg:squarederror
+  tabpfn:
+    device: auto
+  tabiclv2:
+    device: auto
+  pysr:
+    niterations: 1000
+outputs:
+  root: results

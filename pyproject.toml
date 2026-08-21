@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tfms-aspergillus"
+version = "0.1.0"
+description = "Reproducible prediction and explainability workflows for Aspergillus environmental data."
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "scipy>=1.10",
+  "scikit-learn>=1.3",
+  "matplotlib>=3.7",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+gpu = ["shap>=0.44", "xgboost>=2.0", "tabpfn"]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+aspergillus-metrics = "tfms_aspergillus.cli:metrics"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

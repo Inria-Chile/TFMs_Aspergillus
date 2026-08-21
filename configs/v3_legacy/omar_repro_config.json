@@ -1,0 +1,26 @@
+{
+  "input_csv": "../01A_table_anonymized_for_external_analysis.csv",
+  "target_col": "F_Aspergillus",
+  "id_col": "Sample",
+  "dummy_cols": ["C1_salt", "C2_fresh", "C3_sed"],
+  "random_state": 123,
+  "seeds": [123],
+  "rf_n_estimators": 500,
+  "rf_n_jobs": 4,
+  "tabpfn_device": "cpu",
+  "outputs_dir": "outputs",
+  "rf_best_occurrence_covars": [
+    "built",
+    "dist_urban",
+    "curv_prof",
+    "curv",
+    "curv_plan",
+    "trees"
+  ],
+  "max_selected_features_by_scenario": {
+    "A_environment": null,
+    "B_microbiome": 50,
+    "C_environment_microbiome": 80
+  },
+  "tabpfn_k_values": [6, 8, 10, 12, 16, "all"]
+}
