@@ -11,7 +11,7 @@ tabicl==2.0.2
 
 # These versions must be recorded from the GPU production environment before
 # publication; they are intentionally not guessed on a CPU-only node.
-# xgboost==RECORD_FROM_GPU_ENV
+xgboost==3.2.0  # validated GPU probe on musa-1 with V3 data
 tabpfn==8.0.7
 # tabiclv2==RECORD_FROM_GPU_ENV_OR_COMMIT
 pysr==1.5.9
