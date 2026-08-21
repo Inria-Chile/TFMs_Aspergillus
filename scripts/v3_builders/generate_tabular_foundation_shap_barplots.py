@@ -279,7 +279,7 @@ def main() -> None:
     parser.add_argument("--taxa-dictionary", required=True, type=Path)
     parser.add_argument("--model", required=True, choices=["tabpfn", "tabiclv2"])
     parser.add_argument("--output-dir", required=True, type=Path)
-    parser.add_argument("--top-n", default="30,20,10")
+    parser.add_argument("--top-n", default="15")
     args = parser.parse_args()
 
     taxa = load_taxa_names(args.taxa_dictionary)

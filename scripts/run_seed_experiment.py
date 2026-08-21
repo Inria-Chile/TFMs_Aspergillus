@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Create a reproducible seed run record.
+"""Prepare a reproducible seed run record.
 
 This entry point is deliberately conservative: model-specific execution is
-added behind adapters only after its input/output contract is tested.
+not performed here. Use model-specific runners under scripts/runners for validated fitting and seed-level exports.
 """
 import argparse
 import json
@@ -24,7 +24,7 @@ def main():
     metadata = {"seed": args.seed, "config": config, "python": platform.python_version(),
                 "created_utc": datetime.now(timezone.utc).isoformat(), "status": "prepared"}
     (run / "run_metadata.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
-    print(f"prepared {run}; connect a validated model adapter before fitting")
+    print(f"prepared metadata only: {run}; no model was fitted")
 
 
 if __name__ == "__main__":

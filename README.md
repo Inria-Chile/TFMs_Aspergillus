@@ -54,3 +54,5 @@ Every run must write its resolved configuration, software versions, seed, input 
 ## Reproducibility status
 
 The initial repository is derived from the validated V3 implementation. The GPU and PySR runners have now been migrated from their former absolute V2/V3 paths to repository-relative paths. Before publication, pin exact dependency versions, add the final public data DOI/access instructions, add CI coverage for the model adapters, and publish a release tag matching the paper.
+
+See docs/glossary.md for abbreviations and configs/reproducibility.yaml for the canonical 100-seed experiment matrix. SHAP products are written separately to results/raw_shap/ and results/normalized_shap/; the latter uses column_max only for visualization. The default figure policy is top-15 predictors, configurable with --top-n. RF-reference population tests use scripts/statistical_tests.py and yield one p-value per model comparison within family, task and scenario.

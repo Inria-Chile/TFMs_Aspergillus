@@ -59,6 +59,8 @@ from marta_omar_repro.shap_utils import ShapConfig, finite, kernel_shap, shap_ro
 from run_model_shap_marta import read_done, run_one  # noqa: E402
 from run_model_shap_marta import dumps, loads_list, parse_shap_nsamples, safe_name  # noqa: E402
 from run_omar_repro import load_config  # noqa: E402
+from tfms_aspergillus.resources import ResourceMonitor  # noqa: E402
+from tfms_aspergillus.shap_products import export_shap_products  # noqa: E402
 
 
 _TABFM_BASE_MODELS: dict[tuple[str, str], Any] = {}
@@ -239,8 +241,11 @@ def aggregate_seed(records: list[dict[str, Any]], args: argparse.Namespace, mode
         out.insert(0, "task", args.task_kind)
         out.insert(0, "family", args.family)
         out.to_csv(shap_csv, index=False)
-
-    return {"metric_csv": str(metric_csv), "prediction_csv": str(pred_csv), "seed_shap_csv": str(shap_csv)}
+        product_root=Path(args.output_root) if args.output_root else REPO/"results"
+        shap_products=export_shap_products(shap,product_root,family=args.family,task=args.task_kind,scenario=scenario,model=MODEL_LABEL[model],seed=seed)
+    else:
+        shap_products={}
+    return {"metric_csv":str(metric_csv),"prediction_csv":str(pred_csv),"seed_shap_csv":str(shap_csv),**shap_products}
 
 
 def load_tabfm_base_model(backend: str, task_kind: str) -> Any:
@@ -428,6 +433,9 @@ def run_one_tabfm(
             "predictions_csv": str(pred_path),
             "shap_csv": str(shap_path),
             "elapsed_sec": round(time.time() - t0, 3),
+            "fit_seconds": fit_seconds,
+            "shap_seconds": shap_seconds,
+            "model_n_estimators": getattr(model, "n_estimators", None),
             "environmental_preprocessing": env_preprocessing_info,
             "tabfm_backend": run_args.tabfm_backend,
             "tabfm_n_estimators": run_args.tabfm_n_estimators,
@@ -471,6 +479,7 @@ def run_seed(df: pd.DataFrame, cfg: dict, tasks: pd.DataFrame, args: argparse.Na
     source_jsonl = run_dir / "monitoring" / f"{args.model}_{scenario}_seed_{seed:03d}.jsonl"
     done = read_done(source_jsonl) if args.resume else set()
     t0 = time.time()
+    monitor=ResourceMonitor(run_dir/"resource_usage.json")
 
     for _, row in rows.iterrows():
         if str(row["task_id"]) in done:
@@ -479,6 +488,7 @@ def run_seed(df: pd.DataFrame, cfg: dict, tasks: pd.DataFrame, args: argparse.Na
             rec = run_one_tabfm(df, cfg, row, args, run_args, run_dir)
         else:
             rec = run_one(df, cfg, row, run_args, run_dir)
+        monitor.observe()
         append_jsonl(source_jsonl, rec)
         print(json.dumps({"event": "fold_done", "model": args.model, "task": args.task_kind, "scenario": scenario, "seed": seed, "fold_id": int(row["fold_id"]), "status": rec.get("status"), "error": str(rec.get("error_message", ""))[:180]}, ensure_ascii=False), flush=True)
 
@@ -489,13 +499,14 @@ def run_seed(df: pd.DataFrame, cfg: dict, tasks: pd.DataFrame, args: argparse.Na
                 if line.strip():
                     all_records.append(json.loads(line))
     ok_records = [r for r in all_records if r.get("status") == "ok"]
+    monitor.stop(model=args.model,task=args.task_kind,scenario=scenario,seed=seed,fold_count=len(ok_records),workers=1,device=args.device)
     if len(ok_records) < expected:
-        return {"status": "incomplete", "scenario": scenario, "seed": seed, "ok_folds": len(ok_records), "expected_folds": expected, "source_jsonl": str(source_jsonl)}
+        return {"status":"incomplete","scenario":scenario,"seed":seed,"ok_folds":len(ok_records),"expected_folds":expected,"source_jsonl":str(source_jsonl),"resource_usage":str(run_dir/"resource_usage.json")}
 
     outputs = aggregate_seed(ok_records[-expected:], args, args.model, scenario, seed, source_jsonl)
     if args.cleanup_partials:
         shutil.rmtree(run_dir / "partials", ignore_errors=True)
-    return {"status": "ok", "scenario": scenario, "seed": seed, "ok_folds": expected, "elapsed_sec": round(time.time() - t0, 3), **outputs}
+    return {"status":"ok","scenario":scenario,"seed":seed,"ok_folds":expected,"elapsed_sec":round(time.time()-t0,3),"resource_usage":str(run_dir/"resource_usage.json"),**outputs}
 
 
 def main() -> int:

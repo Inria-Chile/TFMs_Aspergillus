@@ -17,7 +17,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-gpu = ["shap>=0.44", "xgboost>=2.0", "tabpfn"]
+gpu = ["shap>=0.44", "xgboost>=2.0", "tabpfn", "tabicl"]
 dev = ["pytest>=8", "ruff>=0.6"]
 
 [project.scripts]

@@ -1,0 +1,21 @@
+# CPU environment verified on Grid'5000 for repository utilities.
+python==3.10.19
+numpy==2.2.6
+pandas==2.3.3
+scipy==1.15.2
+scikit-learn==1.7.2
+shap==0.49.1
+PyYAML==6.0.3
+torch==2.5.1
+tabicl==2.0.2
+
+# These versions must be recorded from the GPU production environment before
+# publication; they are intentionally not guessed on a CPU-only node.
+# xgboost==RECORD_FROM_GPU_ENV
+# tabpfn==RECORD_FROM_GPU_ENV
+# tabiclv2==RECORD_FROM_GPU_ENV_OR_COMMIT
+# pysr==RECORD_FROM_PYSR_ENV
+# SymbolicRegression.jl==RECORD_FROM_JULIA_MANIFEST
+# CUDA==RECORD_FROM_GPU_ENV
+
+# Model checkpoints and hashes belong in docs/runtime-manifest.yaml.

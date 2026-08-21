@@ -217,7 +217,7 @@ def plot_shap_group_figures(
     out_dir: Path,
     label: str,
     *,
-    top_n: int = 30,
+    top_n: int = 15,
 ) -> list[str]:
     if group.empty:
         return []
@@ -319,7 +319,7 @@ def plot_shap_group_figures(
     return paths
 
 
-def plot_shap_figures(shap_values: pd.DataFrame, out_dir: Path, *, top_n: int = 30) -> pd.DataFrame:
+def plot_shap_figures(shap_values: pd.DataFrame, out_dir: Path, *, top_n: int = 15) -> pd.DataFrame:
     if shap_values.empty:
         return pd.DataFrame(columns=["analysis", "task_kind", "scenario", "variant", "model", "plot_path"])
     records: list[dict[str, Any]] = []

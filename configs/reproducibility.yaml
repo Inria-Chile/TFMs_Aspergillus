@@ -1,0 +1,25 @@
+project_name: tfms_aspergillus
+python: "3.10"
+seeds: "123-222"  # 100 analysis replicates; not biological replicates.
+families:
+  - family1_no_clr_microbiome_raw
+  - family2_full_microbiome_clr_raw_env
+  - family3_marta_subset_clr_raw_env
+tasks:
+  - occurrence
+  - positive_abundance
+  - all_sample_abundance
+scenarios:
+  - A_environment
+  - B_microbiome
+  - C_environment_microbiome
+shap:
+  raw_output: results/raw_shap
+  normalized_output: results/normalized_shap
+  normalization: column_max
+  export_signed_values: true
+  export_absolute_values: true
+top_n_default: 15
+resource_tracking:
+  enabled: true
+  fields: [duration_seconds, peak_rss_mib, gpu_snapshot_at_finish, workers, device]
