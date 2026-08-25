@@ -1,0 +1,4 @@
+family,expected_seeds,completed_seeds,pending_seeds
+family1_no_clr_microbiome_raw,4500,4500,0
+family2_full_microbiome_clr_raw_env,4500,4500,0
+family3_marta_subset_clr_raw_env,4500,4500,0
