@@ -7,7 +7,8 @@ The default configuration expects the following files under `data/raw/`:
   names and their biological names.
 
 The predictor table must contain the sample identifier `Sample` and the
-response `Aspergillus_abundance`, as specified in `configs/default.yaml`.
+response `F_Aspergillus`, as specified in `configs/default.yaml`. This is the
+anonymized response column used by the V3 experiments.
 Environmental columns are numeric predictors. Microbiome columns are the
 taxonomic predictors identified by the project dictionary. The response is
 non-negative; positive-abundance regression uses only rows with a strictly

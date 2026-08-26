@@ -3,7 +3,7 @@ random_seeds: [0, 1, 2]
 data:
   input_table: data/raw/aspergillus_predictors.csv
   id_column: Sample
-  target_column: Aspergillus_abundance
+  target_column: F_Aspergillus
   microbiome_dictionary: data/raw/01A_dictionary_taxa.csv
 validation:
   classification:
