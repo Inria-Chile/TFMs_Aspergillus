@@ -83,6 +83,8 @@ def heatmap(matrix: pd.DataFrame, stem: Path, label: str, no_title: bool) -> Non
 
 
 def plot_importance(table: pd.DataFrame, output: Path, model: str, top_n: int, no_title: bool) -> None:
+    model_output = output / "heatmaps" / model
+    model_output.mkdir(parents=True, exist_ok=True)
     table = table.copy()
     table["config"] = table["family"].astype(str) + " | " + table["task"].astype(str) + " | " + table["scenario"].astype(str)
     grouped = table.groupby(["config", "variable"], as_index=False)["importance"].mean()
@@ -92,7 +94,7 @@ def plot_importance(table: pd.DataFrame, output: Path, model: str, top_n: int, n
     matrix = matrix.loc[:, sorted(matrix.columns)]
     maxima = matrix.max(axis=0).replace(0, 1)
     matrix = matrix.divide(maxima, axis=1)
-    matrix.to_csv(output / "heatmaps" / model / f"matrix_top{top_n}_column_max.csv")
+    matrix.to_csv(model_output / f"matrix_top{top_n}_column_max.csv")
     heatmap(matrix, output / "heatmaps" / model / f"heatmap_top{top_n}_column_max", f"{model} predictor importance", no_title)
 
 
