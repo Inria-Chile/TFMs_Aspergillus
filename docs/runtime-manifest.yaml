@@ -10,6 +10,8 @@ xgboost_validation:
   status: passed
   device: cuda
   node: musa-1
+  tested_version: 3.2.0
+  historical_production_wheel: unavailable
   note: current GPU probe with V3 data; historical production environment version remains unverified
 tabpfn: 8.0.7
 tabpfn_environment:
@@ -20,6 +22,7 @@ tabicl: 2.0.2
 tabiclv2:
   version: 2.0.2
   commit: null
+  commit_status: not_recovered
   package: tabicl
   environment: tabicl-gpu
   note: package version observed in the historical GPU environment; repository commit was not retained
@@ -33,14 +36,19 @@ checkpoints:
   classifier: tabicl-classifier-v2-20260212.ckpt
   regressor: tabicl-regressor-v2-20260212.ckpt
   sha256: null
+  status: files_not_present_on_verification_node
 cuda:
   version: 12.1
-  driver: null
+  driver: 580.95.05
+  driver_node: musa-2
 hardware:
   - node_class: musa-1
     gpu: NVIDIA H100 NVL
     count: 2
     memory_mib: 95830
 data:
-  sha256: null
+  file: 01A_table_anonymized_for_external_analysis.csv
+  sha256: 9be1cc63cbc8c5b57ed32d45159b69cd8198b8b376a7bff1c93b20dc0c062b17
+  size_bytes: 298403
+  source_version: v2_shared_storage_copy_used_for_gpu_probe
   access: private_initial_release
