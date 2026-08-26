@@ -18,8 +18,11 @@ tabpfn_environment:
 torch: 2.5.1
 tabicl: 2.0.2
 tabiclv2:
-  version: null
+  version: 2.0.2
   commit: null
+  package: tabicl
+  environment: tabicl-gpu
+  note: package version observed in the historical GPU environment; repository commit was not retained
 pysr:
   python_version: 1.5.9
   environment: cyt_models_nancy_clone_sophia

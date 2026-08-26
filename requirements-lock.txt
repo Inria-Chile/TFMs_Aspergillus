@@ -9,13 +9,14 @@ PyYAML==6.0.3
 torch==2.5.1
 tabicl==2.0.2
 
-# These versions must be recorded from the GPU production environment before
-# publication; they are intentionally not guessed on a CPU-only node.
-xgboost==3.2.0  # validated GPU probe on musa-1 with V3 data
+# XGBoost 3.2.0 passed a CUDA probe on musa-1 with V3 data. The historical
+# production wheel could not be recovered, so this is a compatibility pin,
+# not a claim about the original wheel.
+xgboost==3.2.0
 tabpfn==8.0.7
-# tabiclv2==RECORD_FROM_GPU_ENV_OR_COMMIT
+# TabICLv2 was executed through the tabicl==2.0.2 package above.
 pysr==1.5.9
 # SymbolicRegression.jl==1.11.3  # Julia 1.10 compatibility declared by Project.toml
-# CUDA==RECORD_FROM_GPU_ENV
+# CUDA runtime observed on the GPU probe: 12.1.
 
 # Model checkpoints and hashes belong in docs/runtime-manifest.yaml.

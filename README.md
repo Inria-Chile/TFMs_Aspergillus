@@ -31,7 +31,14 @@ python -m pip install -e '.[dev]'
 python -m pip install -e '.[gpu]'
 ```
 
-## Reproduce
+The paper experiments used model-specific environments because the GPU
+foundation models and PySR have different runtime requirements. The verified
+historical environments are documented in
+[`docs/environment-matrix.md`](docs/environment-matrix.md). The flat lock file
+is intended for the CPU utilities; it is not a claim that all five model
+backends must share one Python environment.
+
+## Reproduce from raw seed outputs
 
 1. Place the input table in `data/raw/` and update `configs/default.yaml`.
 2. Run `python scripts/validate_inputs.py`.
@@ -39,6 +46,39 @@ python -m pip install -e '.[gpu]'
 4. Run a model adapter with `python scripts/runners/run_gpu_seed_tasks.py --help` or `python scripts/runners/run_pysr_seed_tasks.py --help`; both use repository-relative paths and the V3 seed-level export contract.
 5. Aggregate only validated seed exports with `python scripts/aggregate_results.py`.
 6. Generate figures from the aggregated tables with the plotting scripts.
+
+For a clean reconstruction of the final tabular products from raw
+`seed_*_metrics.csv` files, use:
+
+```bash
+python scripts/build_final_tables.py \
+  --raw-root results/raw \
+  --output-dir data/final/rebuilt \
+  --shap-table data/final/v3_100_replicas/shap/shap_mean_abs_by_feature.csv \
+  --pysr-table data/final/v3_100_replicas/pysr/aggregated_importances.csv
+```
+
+## Reproduce from consolidated tables
+
+The release table bundle is stored in
+`data/final/v3_100_replicas/`. It contains the seed-level metrics used for
+boxplots, the aggregated SHAP table, and the PySR importance tables. Figures
+can be regenerated without the raw result tree:
+
+```bash
+python scripts/plot_final_results.py \
+  --metrics-table data/final/v3_100_replicas/metrics/seed_metrics_long_for_boxplots.csv \
+  --shap-table data/final/v3_100_replicas/shap/shap_mean_abs_by_feature.csv \
+  --pysr-table data/final/v3_100_replicas/pysr/aggregated_importances.csv \
+  --output-dir results/reproduced_figures \
+  --models random_forest xgboost tabpfn tabiclv2 pysr \
+  --top-n 3 5 10
+```
+
+The command writes PNG/PDF boxplots, column-maximum-normalized heatmaps, and
+the matrices used by the heatmaps. Use `--no-title` when reproducing the
+title-free manuscript variants. The consolidated bundle is checked by
+`manifests/checksums.sha256`.
 
 Every run must write its resolved configuration, software versions, seed, input checksum, host, and output checksum to a provenance record. Results from the final study are described in `docs/final-results-manifest.md`; they are not silently bundled into source control.
 
@@ -53,6 +93,11 @@ Every run must write its resolved configuration, software versions, seed, input 
 
 ## Reproducibility status
 
-The initial repository is derived from the validated V3 implementation. The GPU and PySR runners have now been migrated from their former absolute V2/V3 paths to repository-relative paths. Before publication, pin exact dependency versions, add the final public data DOI/access instructions, add CI coverage for the model adapters, and publish a release tag matching the paper.
+The repository is derived from the validated V3 implementation. Exact
+versions that were observed in the historical environments are recorded in
+`docs/runtime-manifest.yaml` and `docs/environment-matrix.md`. The raw input
+data and the original TabICLv2 checkpoint hashes remain unavailable for
+public verification in the current private release; their checksums must be
+filled when the data and checkpoints receive an approved release identifier.
 
 See docs/glossary.md for abbreviations and configs/reproducibility.yaml for the canonical 100-seed experiment matrix. SHAP products are written separately to results/raw_shap/ and results/normalized_shap/; the latter uses column_max only for visualization. The default figure policy is top-15 predictors, configurable with --top-n. RF-reference population tests use scripts/statistical_tests.py and yield one p-value per model comparison within family, task and scenario.
