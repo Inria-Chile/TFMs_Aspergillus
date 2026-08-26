@@ -27,7 +27,10 @@ def compare_populations(reference: Iterable[float], target: Iterable[float]) -> 
     other = _finite(target)
     if not len(ref) or not len(other):
         return {"statistic": float("nan"), "p_value": float("nan"), "n_reference": int(len(ref)), "n_target": int(len(other)), "test": "mannwhitneyu_two_sided"}
-    result = mannwhitneyu(ref, other, alternative="two-sided", method="auto")
+    try:
+        result = mannwhitneyu(ref, other, alternative="two-sided", method="auto")
+    except TypeError:  # SciPy < 1.7
+        result = mannwhitneyu(ref, other, alternative="two-sided")
     return {"statistic": float(result.statistic), "p_value": float(result.pvalue), "n_reference": int(len(ref)), "n_target": int(len(other)), "test": "mannwhitneyu_two_sided"}
 
 
@@ -38,5 +41,8 @@ def compare_paired(reference: Iterable[float], target: Iterable[float]) -> dict[
     n = min(len(ref), len(other))
     if not n:
         return {"statistic": float("nan"), "p_value": float("nan"), "n_pairs": 0, "test": "wilcoxon_signed_rank_two_sided"}
-    result = wilcoxon(ref[:n], other[:n], alternative="two-sided", method="auto")
+    try:
+        result = wilcoxon(ref[:n], other[:n], alternative="two-sided", method="auto")
+    except TypeError:  # SciPy < 1.7
+        result = wilcoxon(ref[:n], other[:n], alternative="two-sided")
     return {"statistic": float(result.statistic), "p_value": float(result.pvalue), "n_pairs": int(n), "test": "wilcoxon_signed_rank_two_sided"}
