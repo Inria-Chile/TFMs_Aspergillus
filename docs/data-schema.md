@@ -2,8 +2,8 @@
 
 The default configuration expects the following files under `data/raw/`:
 
-- `aspergillus_predictors.csv`: one row per environmental sample;
-- `01A_dictionary_taxa.csv`: mapping between anonymized microbiome predictor
+- `aspergillus_predictors.csv` (private V3 snapshot): one row per environmental sample;
+- `01A_dictionary_taxa.csv` (private V3 snapshot): mapping between anonymized microbiome predictor
   names and their biological names.
 
 The predictor table must contain the sample identifier `Sample` and the
