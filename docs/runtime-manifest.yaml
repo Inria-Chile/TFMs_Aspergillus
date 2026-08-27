@@ -46,6 +46,14 @@ hardware:
     gpu: NVIDIA H100 NVL
     count: 2
     memory_mib: 95830
+    ram_gib: 512
+    note: "GPU validation node; approximately 500 GiB of host RAM"
+  - node_class: musa-2
+    gpu: NVIDIA H100 NVL
+    count: 2
+    memory_mib: 95830
+    ram_gib: 512
+    note: "GPU validation node; approximately 500 GiB of host RAM"
 data:
   file: 01A_table_anonymized_for_external_analysis.csv
   sha256: 9be1cc63cbc8c5b57ed32d45159b69cd8198b8b376a7bff1c93b20dc0c062b17
