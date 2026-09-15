@@ -17,10 +17,10 @@ It intentionally contains no figures and no raw input data.
 
 The release was rebuilt from artifacts `457`, `458`, and `459`, with the six
 Family 2 Random Forest/XGBoost SHAP groups recalculated from 9,600 fold-level
-files in artifact `471`. All SHAP and PySR-importance groups contain 100 seeds.
-The three PySR classification metrics under Subset with CLR contain 60 seeds;
-the remaining 147 performance groups contain 100. This limitation is explicit
-in the coverage manifest and must not be interpreted as complete coverage.
+files in artifact `471`. The three PySR classification performance series under
+Subset with CLR were replaced as complete 100-seed series from the validated
+artifact `403`. All performance, SHAP, and PySR-importance groups in this
+directory now contain 100 seeds.
 
 The plotting scripts should receive this directory as their tabular input
 root. No plotting output is versioned here; figures are reproducible products
