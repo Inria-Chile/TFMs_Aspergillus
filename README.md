@@ -1,6 +1,6 @@
 # TFMs Aspergillus
 
-Reproducible code for the Aspergillus occurrence and abundance study. The repository follows the separation used by the Inria-Chile `planktonzilla` project: configuration, installable source package, executable scripts, tests, documentation, and provenance are kept distinct.
+Reproducible code for the Aspergillus occurrence and abundance study.
 
 ## Scope
 
