@@ -6,7 +6,8 @@ Reproducible code for the Aspergillus occurrence and abundance study. The reposi
 
 The workflow evaluates five model families: Random Forest, XGBoost, TabPFN, TabICLv2, and PySR. It supports three tasks (occurrence classification, positive-abundance regression, and complete zero-inflated regression) and three predictor strategies (Environment, Microbiome, and Environment + Microbiome), with raw, CLR, and subset-CLR variants.
 
-This repository contains code and small metadata/manifests. Large raw data and generated results are intentionally excluded from Git and are referenced through a versioned manifest.
+This repository contains code, provenance records, and consolidated result
+tables. Raw sample-level inputs are intentionally excluded from Git.
 
 ## Layout
 
@@ -86,7 +87,11 @@ Every run must write its resolved configuration, software versions, seed, input 
 
 - Splits are generated with explicit seeds and persisted before model fitting.
 - Classification uses stratified folds where the task permits it.
-- Environmental transforms and feature selection are fit on training folds only.
+- Environmental predictors remain on their original scale in all three
+  preprocessing configurations.
+- The CLR pseudocount and predefined predictor subset were established before
+  resampling; the estimates are internally cross-validated rather than the
+  product of a fully nested preprocessing pipeline.
 - Test metrics are computed only on held-out samples and averaged at the seed level.
 - SHAP and PySR frequency are reported as distinct explainability measures.
 - A run cannot be marked complete unless expected seed-level artifacts pass schema validation.
@@ -96,8 +101,8 @@ Every run must write its resolved configuration, software versions, seed, input 
 The repository is derived from the validated V3 implementation. Exact
 versions that were observed in the historical environments are recorded in
 `docs/runtime-manifest.yaml` and `docs/environment-matrix.md`. The raw input
-data and the original TabICLv2 checkpoint hashes remain unavailable for
-public verification in the current private release; their checksums must be
-filled when the data and checkpoints receive an approved release identifier.
+data are not redistributed. The original TabICLv2 checkpoint hashes remain
+unavailable for independent verification and are documented as a
+reproducibility limitation.
 
 See docs/glossary.md for abbreviations and configs/reproducibility.yaml for the canonical 100-seed experiment matrix. SHAP products are written separately to results/raw_shap/ and results/normalized_shap/; the latter uses column_max only for visualization. The default figure policy is top-15 predictors, configurable with --top-n. RF-reference population tests use scripts/statistical_tests.py and yield one p-value per model comparison within family, task and scenario.

@@ -50,10 +50,13 @@ permits; because there are only 18 positive observations, the number of
 positives per fold must be reported from the resolved fold manifest rather
 than inferred from the nominal fold count.
 
-CLR pseudocount replacement and feature selection are fit using the training
-partition only. The transformation and selected feature list are then
-applied to the held-out partition. Test outcomes are not used to select
-features, tune models, or choose equations.
+Environmental predictors remain untransformed. Microbiome predictors are used
+as raw relative abundances in Family 1 and with a CLR transformation in
+Families 2 and 3. The CLR pseudocount and the Family 3 predictor subset were
+defined before resampling rather than estimated inside each training fold.
+Consequently, the results compare fixed predictor configurations under
+internal cross-validation, not a fully nested feature-selection pipeline.
+Held-out outcomes are not used to tune the fitted models.
 
 The exact fold assignments, resolved configuration, input checksum, package
 versions, and host are part of the per-seed provenance contract. A seed is
@@ -104,6 +107,6 @@ unscaled values and their dispersion remain in the tabular product.
 6. Build the consolidated tables with `scripts/build_final_tables.py`.
 7. Generate boxplots and heatmaps with `scripts/plot_final_results.py`.
 
-The current private release includes the final tabular bundle but not the
-confidential input data. Public release of the data and checkpoint hashes is
-required for an external end-to-end reproduction.
+The repository includes consolidated tabular results but not the sample-level
+input data. External end-to-end reproduction therefore requires authorized
+access to the inputs; figures remain reproducible from the consolidated tables.
