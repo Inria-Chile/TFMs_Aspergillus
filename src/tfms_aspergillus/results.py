@@ -96,6 +96,13 @@ def load_importance_table(path: str | Path, model: str | None = None) -> pd.Data
         if missing:
             raise ValueError(f"SHAP table is missing columns: {sorted(missing)}")
         frame = frame.rename(columns={"feature": "variable", "mean_abs_shap": "importance"})
+    elif "mean_relative_frequency" in frame.columns:
+        required = {"family", "task", "scenario", "feature", "mean_relative_frequency"}
+        missing = required - set(frame.columns)
+        if missing:
+            raise ValueError(f"PySR table is missing columns: {sorted(missing)}")
+        frame = frame.rename(columns={"feature": "variable", "mean_relative_frequency": "importance"})
+        frame["model"] = "pysr"
     elif "importance_mean" in frame.columns:
         required = {"family", "task_type", "scenario", "variable", "importance_mean"}
         missing = required - set(frame.columns)

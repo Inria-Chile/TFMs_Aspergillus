@@ -6,22 +6,21 @@ It intentionally contains no figures and no raw input data.
 
 ## Contents
 
-- `metrics/seed_metrics_long_for_boxplots.csv`: validated metric values by
+- `metrics/seed_metrics_C_environment_microbiome.csv`: validated metric values by
   family, task, scenario, model, seed, and metric.
-- `shap/shap_mean_abs_by_feature.csv`: aggregated absolute SHAP values by
-  predictor, including dispersion and the number of contributing seeds for
-  Random Forest, XGBoost, TFN/TabPFN, and TabICLv2.
-- `pysr/tidy_importance_results.csv`: PySR predictor-frequency results in
-  tidy format.
-- `pysr/aggregated_importances.csv`: PySR importance values used by the
-  integrated heatmap builder.
-- `manifests/`: completion summaries and SHA-256 checksums.
+- `shap/shap_mean_abs_C_environment_microbiome_100seeds.csv`: mean absolute
+  SHAP values across 100 seeds for all 36 preprocessing--task--model groups.
+- `pysr/pysr_mean_relative_frequency_C_environment_microbiome_100seeds.csv`:
+  mean relative predictor frequency across 100 seeds for all nine PySR groups.
+- `manifests/coverage_manifest.csv`: group-level seed coverage.
+- `manifests/checksums.sha256`: SHA-256 checksums for the released tables.
 
-The source artifact was
-`403_final_tables_100_replicas_20260816`, with PySR tables taken from
-`407_final_pysr_importance_heatmaps_20260816`. The source artifact and the
-input data remain outside this repository until their publication status is
-approved.
+The release was rebuilt from artifacts `457`, `458`, and `459`, with the six
+Family 2 Random Forest/XGBoost SHAP groups recalculated from 9,600 fold-level
+files in artifact `471`. All SHAP and PySR-importance groups contain 100 seeds.
+The three PySR classification metrics under Subset with CLR contain 60 seeds;
+the remaining 147 performance groups contain 100. This limitation is explicit
+in the coverage manifest and must not be interpreted as complete coverage.
 
 The plotting scripts should receive this directory as their tabular input
 root. No plotting output is versioned here; figures are reproducible products

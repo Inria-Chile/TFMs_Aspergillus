@@ -55,8 +55,8 @@ For a clean reconstruction of the final tabular products from raw
 python scripts/build_final_tables.py \
   --raw-root results/raw \
   --output-dir data/final/rebuilt \
-  --shap-table data/final/v3_100_replicas/shap/shap_mean_abs_by_feature.csv \
-  --pysr-table data/final/v3_100_replicas/pysr/aggregated_importances.csv
+  --shap-table data/final/v3_100_replicas/shap/shap_mean_abs_C_environment_microbiome_100seeds.csv \
+  --pysr-table data/final/v3_100_replicas/pysr/pysr_mean_relative_frequency_C_environment_microbiome_100seeds.csv
 ```
 
 ## Reproduce from consolidated tables
@@ -68,9 +68,9 @@ can be regenerated without the raw result tree:
 
 ```bash
 python scripts/plot_final_results.py \
-  --metrics-table data/final/v3_100_replicas/metrics/seed_metrics_long_for_boxplots.csv \
-  --shap-table data/final/v3_100_replicas/shap/shap_mean_abs_by_feature.csv \
-  --pysr-table data/final/v3_100_replicas/pysr/aggregated_importances.csv \
+  --metrics-table data/final/v3_100_replicas/metrics/seed_metrics_C_environment_microbiome.csv \
+  --shap-table data/final/v3_100_replicas/shap/shap_mean_abs_C_environment_microbiome_100seeds.csv \
+  --pysr-table data/final/v3_100_replicas/pysr/pysr_mean_relative_frequency_C_environment_microbiome_100seeds.csv \
   --output-dir results/reproduced_figures \
   --models random_forest xgboost tabpfn tabiclv2 pysr \
   --top-n 3 5 10
