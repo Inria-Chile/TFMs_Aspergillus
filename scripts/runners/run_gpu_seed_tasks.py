@@ -31,10 +31,10 @@ MODEL_LABEL = {"random_forest": "Random Forest", "tabpfn": "TFN/TabPFN", "tabicl
 MODEL_DIR = {"random_forest": "random_forest", "tabpfn": "tabpfn", "tabiclv2": "tabiclv2", "xgboost": "xgboost", "tabfm": "tabfm"}
 SCENARIO_LABEL = {"A_environment": "A", "B_microbiome": "B", "C_environment_microbiome": "C"}
 TASK_LABEL = {
-    "occurrence": "Clasificacion",
-    "positive_abundance": "Regresion 18 positivas",
-    "conditional_abundance": "Regresion 18 positivas",
-    "all_sample_abundance": "Regresion 50 muestras",
+    "occurrence": "Classification",
+    "positive_abundance": "Positive-abundance regression",
+    "conditional_abundance": "Positive-abundance regression",
+    "all_sample_abundance": "Complete-abundance regression",
 }
 TASK_DIR = {
     "occurrence": "classification",

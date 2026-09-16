@@ -35,26 +35,26 @@ import pandas as pd
 
 
 FAMILIES = [
-    ("family1_no_clr_microbiome_raw", "Familia 1: microbioma sin CLR", "family_01", "No CLR preprocessing"),
+    ("family1_no_clr_microbiome_raw", "Family 1: raw microbiome + raw environment", "family_01", "No CLR preprocessing"),
     (
         "family2_full_microbiome_clr_raw_env",
-        "Familia 2: microbioma CLR completo + ambiente crudo",
+        "Family 2: full microbiome CLR + raw environment",
         "family_02",
         "Full CLR preprocessing",
     ),
     (
         "family3_marta_subset_clr_raw_env",
-        "Familia 3: subset Marta + microbioma CLR",
+        "Family 3: Marta subset + microbiome CLR + raw environment",
         "family_03",
         "Subset CLR preprocessing",
     ),
 ]
 
 TASKS = [
-    ("classification", "Clasificacion", "Classification", "classification", ["classification"], 15),
+    ("classification", "Classification", "Classification", "classification", ["classification"], 15),
     (
         "regression_18_positive",
-        "Regresion 18 muestras",
+        "Positive-abundance regression",
         "Regression 18 samples",
         "regression_18_samples",
         ["regression_18_positive", "regression_18_positive_samples", "positive_abundance"],
@@ -62,7 +62,7 @@ TASKS = [
     ),
     (
         "regression_50_all_samples",
-        "Regresion 50 muestras",
+        "Complete-abundance regression",
         "Regression 50 samples",
         "regression_50_samples",
         ["regression_50_all_samples", "all_sample_abundance"],
@@ -453,7 +453,7 @@ def boxplot_models_by_group(
             ax.scatter([x + j for j in jitter], values, s=7, alpha=0.24, color=MODEL_COLOR[model], edgecolors="none")
 
     handles = [plt.Line2D([0], [0], marker="s", linestyle="", color=MODEL_COLOR[m], markersize=9) for m in models]
-    ax.legend(handles, [MODEL_LABEL[m] for m in models], title="Model" if x_kind == "family" else "Modelo", loc="upper left", frameon=True, ncol=3)
+    ax.legend(handles, [MODEL_LABEL[m] for m in models], title="Model" if x_kind == "family" else "Model", loc="upper left", frameon=True, ncol=3)
     ax.set_xticks([centers[x] for x in center_values])
     ax.set_xticklabels([x_labels[x] for x in center_values], fontsize=11)
     ax.set_xlabel(xlabel)

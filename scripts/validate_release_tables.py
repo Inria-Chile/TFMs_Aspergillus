@@ -22,10 +22,7 @@ def main() -> None:
     assert set(shap["scenario"]) == {"C_environment_microbiome"}
     assert set(pysr["scenario"]) == {"C_environment_microbiome"}
     assert (shap["importance"] >= 0).all() and (pysr["importance"] >= 0).all()
-    assert coverage["status"].value_counts().to_dict() == {
-        "complete_100_seeds": 147,
-        "partial_metrics_60_seeds": 3,
-    }
+    assert coverage["status"].value_counts().to_dict() == {"complete_100_seeds": 150}
     print(f"Validated rows: metrics={len(metrics)}, SHAP={len(shap)}, PySR={len(pysr)}")
 
 

@@ -22,9 +22,9 @@ V2 = REPO
 V3 = REPO
 
 TASK_LABEL = {
-    "occurrence": "Clasificacion",
-    "conditional_abundance": "Regresion 18 positivas",
-    "all_sample_abundance": "Regresion 50 muestras",
+    "occurrence": "Classification",
+    "conditional_abundance": "Positive-abundance regression",
+    "all_sample_abundance": "Complete-abundance regression",
 }
 TASK_DIR = {
     "occurrence": "classification",

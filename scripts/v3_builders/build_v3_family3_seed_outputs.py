@@ -28,7 +28,7 @@ REPO = Path(__file__).resolve().parents[2]
 V2 = Path(os.environ.get("ASPERGILLUS_LEGACY_ROOT", REPO / "data/legacy_v2"))
 V3 = Path(os.environ.get("ASPERGILLUS_REPO_ROOT", REPO))
 FAMILY = "family3_marta_subset_clr_raw_env"
-FAMILY_LABEL = "Familia 3: subset Marta + microbioma CLR + ambiente crudo"
+FAMILY_LABEL = "Family 3: Marta subset + microbiome CLR + raw environment"
 STRATEGY = "strategy49_marta_subset_raw_env_selected_microbiome_clr"
 AUDIT_DIR = V2 / "outputs/59_family3_deep_search_20260628_2035"
 
@@ -38,9 +38,9 @@ TASK_DIR = {
     "all_sample_abundance": "regression_50_all_samples",
 }
 TASK_LABEL = {
-    "classification": "Clasificacion",
-    "positive_abundance": "Regresion 18 positivas",
-    "all_sample_abundance": "Regresion 50 muestras",
+    "classification": "Classification",
+    "positive_abundance": "Positive-abundance regression",
+    "all_sample_abundance": "Complete-abundance regression",
 }
 EXPECTED_FOLDS = {
     "classification": 15,
@@ -230,11 +230,11 @@ def aggregate_completion(records: pd.DataFrame, pysr_records: pd.DataFrame) -> t
     for task in TASKS:
         for model in MODELS:
             row: dict[str, object] = {
-                "Familia": FAMILY_LABEL,
-                "Tarea": TASK_LABEL[task],
+                "Family": FAMILY_LABEL,
+                "Task": TASK_LABEL[task],
                 "task": task,
-                "Modelo": model,
-                "Recurso recomendado": "CPU" if model in {"PySR", "Random Forest"} else ("GPU preferente/CPU posible" if model == "XGBoost" else "GPU"),
+                "Model": model,
+                "Recommended resource": "CPU" if model in {"PySR", "Random Forest"} else ("GPU preferred/CPU possible" if model == "XGBoost" else "GPU"),
             }
             total_ready = 0
             total_pending = 0
@@ -300,8 +300,8 @@ def write_completion_markdown(df: pd.DataFrame, out_md: Path) -> None:
         sub = df[df["task"].eq(task)].copy()
         table = sub[
             [
-                "Modelo",
-                "Recurso recomendado",
+                "Model",
+                "Recommended resource",
                 "A_environment_listas",
                 "A_environment_pendientes",
                 "B_microbiome_listas",

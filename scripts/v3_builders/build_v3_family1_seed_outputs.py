@@ -20,7 +20,7 @@ REPO = Path(__file__).resolve().parents[2]
 V2 = Path(os.environ.get("ASPERGILLUS_LEGACY_ROOT", REPO / "data/legacy_v2"))
 V3 = Path(os.environ.get("ASPERGILLUS_REPO_ROOT", REPO))
 FAMILY = "family1_no_clr_microbiome_raw"
-FAMILY_LABEL = "Familia 1: microbioma sin CLR"
+FAMILY_LABEL = "Family 1: raw microbiome + raw environment"
 
 TASK_DIR = {
     "classification": "classification",
@@ -28,9 +28,9 @@ TASK_DIR = {
     "all_sample_abundance": "regression_50_all_samples",
 }
 TASK_LABEL = {
-    "classification": "Clasificacion",
-    "positive_abundance": "Regresion 18 positivas",
-    "all_sample_abundance": "Regresion 50 muestras",
+    "classification": "Classification",
+    "positive_abundance": "Positive-abundance regression",
+    "all_sample_abundance": "Complete-abundance regression",
 }
 MODEL_SLUG = {
     "PySR": "pysr",
