@@ -1,13 +1,14 @@
-# V3 final tabular results
+# Final tabular results for the C predictor scenario
 
 This directory contains the tabular products used to reproduce the final
-performance boxplots and predictor-importance heatmaps for the V3 analysis.
-It intentionally contains no figures and no raw input data.
+performance boxplots and predictor-importance heatmaps for scenario
+`C_environment_microbiome`. It intentionally contains no figures and no raw
+input data.
 
 ## Contents
 
-- `metrics/seed_metrics_C_environment_microbiome.csv`: validated metric values by
-  family, task, scenario, model, seed, and metric.
+- `metrics/seed_metrics_C_environment_microbiome.csv`: validated seed-level
+  metric values by family, task, scenario, model, seed, and metric.
 - `shap/shap_mean_abs_C_environment_microbiome_100seeds.csv`: mean absolute
   SHAP values across 100 seeds for all 36 preprocessing--task--model groups.
 - `pysr/pysr_mean_relative_frequency_C_environment_microbiome_100seeds.csv`:
@@ -15,12 +16,12 @@ It intentionally contains no figures and no raw input data.
 - `manifests/coverage_manifest.csv`: group-level seed coverage.
 - `manifests/checksums.sha256`: SHA-256 checksums for the released tables.
 
-The release was rebuilt from artifacts `457`, `458`, and `459`, with the six
-Family 2 Random Forest/XGBoost SHAP groups recalculated from 9,600 fold-level
-files in artifact `471`. The three PySR classification performance series under
-Subset with CLR were replaced as complete 100-seed series from the validated
-artifact `403`. All performance, SHAP, and PySR-importance groups in this
-directory now contain 100 seeds.
+The release was rebuilt from archived consolidation batches `457`, `458`,
+`459`, and `471`. The three PySR classification performance series under the
+predefined subset with CLR were replaced as complete 100-seed series from the
+validated batch `403`. These batch identifiers are retained only for
+provenance. All performance, SHAP, and PySR-importance groups in this
+directory contain 100 seeds.
 
 The plotting scripts should receive this directory as their tabular input
 root. No plotting output is versioned here; figures are reproducible products

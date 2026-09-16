@@ -6,15 +6,16 @@ preserved when reproducing the Aspergillus study.
 ## Data and prediction tasks
 
 The dataset contains 50 environmental samples, of which 18 have detected
-Aspergillus and 32 have a zero response. The response is denoted by
-`y >= 0`. Three tasks are evaluated:
+Aspergillus and 32 have a zero response. Let \(y_i\) denote the non-negative
+relative abundance of `F_Aspergillus` in sample \(i\). Three tasks are
+evaluated:
 
 1. **Occurrence classification:**
    \(z_i = 1[y_i > 0]\), evaluated with AUC, F1, and balanced accuracy.
 2. **Positive-abundance regression:** the response is restricted to
-   \(\{y_i:y_i>0\}\), evaluated with RMSE, MAE, and R2.
-3. **Complete zero-inflated regression:** all 50 response values are retained,
-   including zeros, and the same regression metrics are used.
+   \(\{y_i:y_i>0\}\), evaluated with RMSE, MAE, and R^2.
+3. **All-sample abundance regression including zeros:** all 50 response values
+   are retained, including zeros, and the same regression metrics are used.
 
 The 100 seeds (`123` through `222`) are analysis replicates, not independent
 biological samples. For each seed, fold-level predictions are aggregated to
@@ -27,8 +28,8 @@ Each family defines a preprocessing view of the predictors:
 - Family 1: microbiome predictors without CLR preprocessing.
 - Family 2: full CLR microbiome predictors with the environmental table kept
   on its original scale.
-- Family 3: the retained Marta subset with CLR-transformed microbiome
-  predictors and the corresponding environmental predictors.
+- Family 3: the predefined ZIBR-selected subset with CLR-transformed
+  microbiome predictors and the corresponding environmental predictors.
 
 Within each family, scenarios are:
 
@@ -43,12 +44,12 @@ never be mixed when building a comparison.
 ## Resampling and leakage control
 
 The canonical configuration specifies stratified 15-fold resampling for
-classification, leave-one-out evaluation for positive-abundance regression,
-and 18-fold resampling for the complete zero-inflated regression. The
-classification folds preserve the occurrence labels as far as the fold size
-permits; because there are only 18 positive observations, the number of
-positives per fold must be reported from the resolved fold manifest rather
-than inferred from the nominal fold count.
+classification, leave-one-out evaluation for positive-abundance regression
+(18 folds), and stratified 15-fold resampling for all-sample abundance
+regression including zeros. Classification and all-sample folds preserve the
+occurrence labels as far as the fold size permits; because there are only 18
+positive observations, the number of positives per fold must be reported from
+the resolved fold manifest rather than inferred from the nominal fold count.
 
 Environmental predictors remain untransformed. Microbiome predictors are used
 as raw relative abundances in Family 1 and with a CLR transformation in
@@ -86,7 +87,7 @@ recorded in the resolved configuration.
 For a seed with fold metrics \(m_{s,f}\), the reported seed value is the
 arithmetic mean over its valid test folds. RMSE is
 \(\sqrt{n^{-1}\sum_i(y_i-\hat y_i)^2}\), MAE is
-\(n^{-1}\sum_i|y_i-\hat y_i|\), and R2 is the coefficient of determination.
+\(n^{-1}\sum_i|y_i-\hat y_i|\), and R^2 is the coefficient of determination.
 AUC is the area under the ROC curve; F1 is the harmonic mean of precision and
 recall; balanced accuracy is the mean of sensitivity and specificity.
 

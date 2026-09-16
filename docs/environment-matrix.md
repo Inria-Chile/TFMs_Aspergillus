@@ -18,15 +18,15 @@ from the environments that remain available on the allocated Sophia nodes.
 data schema. The historical production wheel used for every original V3
 XGBoost seed could not be recovered from the remaining environments. It is
 therefore recorded as a validated compatibility version, not as a claim
-about the historical wheel. This distinction must remain in the paper
-provenance and in any release note.
+about the historical wheel. This distinction should be reported in release
+provenance and in any manuscript reproducibility note.
 
 ## Julia and PySR
 
 The recovered Julia package is `SymbolicRegression.jl` version 1.11.3, from
 the package project at `/home/lvalenzuela/.julia/packages/SymbolicRegression`.
 Its project declares Julia 1.10 compatibility. The exact Julia executable
-build and the package manifest commit were not retained and must be added
+build and the package manifest commit were not retained. They are required
 before claiming bitwise reproduction of PySR equations.
 
 ## Installation policy

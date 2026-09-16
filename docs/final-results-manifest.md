@@ -1,14 +1,24 @@
 # Final results manifest
 
 The final public tabular products are stored under
-`data/final/v3_100_replicas/`. They were rebuilt from consolidation artifacts
-`457`, `458`, `459`, and `471` for scenario `C_environment_microbiome`.
+`data/final/v3_100_replicas/`. They correspond to scenario
+`C_environment_microbiome` and were rebuilt from archived consolidation
+batches `403`, `457`, `458`, `459`, and `471`.
 
-The bundle contains metrics by seed, 36 complete 100-seed SHAP groups, nine
-complete 100-seed PySR frequency groups, a coverage manifest, and checksums.
-Three PySR classification performance groups under Subset with CLR contain 60
-seeds because the additional equation exports do not include AUC, F1, or
-balanced accuracy. It contains no
-figures, raw input data, fold-level monitoring tree, or model checkpoints.
+The bundle contains:
+
+- seed-level performance metrics for 105 family-task-model-metric groups;
+- 36 complete 100-seed SHAP groups;
+- nine complete 100-seed PySR predictor-frequency groups;
+- a group-level coverage manifest;
+- SHA-256 checksums for the released tables.
+
+All performance, SHAP, and PySR-importance groups in the release contain 100
+seeds. The three PySR classification metrics for the predefined subset with
+CLR were replaced by complete 100-seed series from the validated batch `403`;
+this resolves the earlier 60-seed public-table gap.
+
+The bundle contains no figures, raw sample-level input data, fold-level
+monitoring tree, or model checkpoints.
 
 Raw sample-level inputs and model checkpoints are not redistributed.

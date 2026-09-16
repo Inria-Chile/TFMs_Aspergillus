@@ -42,4 +42,8 @@ must be pinned in a release lockfile before publication. No runner may use a
 machine-specific absolute project path; external model repositories are
 provided through `TABFM_REPO` or an equivalent documented configuration.
 
-Each completed seed writes resource_usage.json with elapsed time, peak resident memory, device, fold count and a GPU snapshot. Raw SHAP rows include signed and absolute values, seed, fold, model, task and scenario. The runner also writes raw and column_max-normalized products under results/raw_shap/ and results/normalized_shap/.
+Each completed seed writes `resource_usage.json` with elapsed time, peak
+resident memory, device, fold count, and a GPU snapshot. Raw SHAP rows include
+signed and absolute values, seed, fold, model, task, and scenario. The runner
+also writes raw and column-maximum-normalized products under
+`results/raw_shap/` and `results/normalized_shap/`.

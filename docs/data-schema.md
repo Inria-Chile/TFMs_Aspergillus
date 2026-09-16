@@ -14,7 +14,7 @@ Environmental columns are numeric predictors. Microbiome columns are the
 taxonomic predictors identified by the project dictionary. The response is
 non-negative; positive-abundance regression uses only rows with a strictly
 positive response, while occurrence classification uses the indicator
-`Aspergillus_abundance > 0`.
+`F_Aspergillus > 0`.
 
 This repository does not redistribute either input file. The workflow must be
 run only after the user supplies authorized copies locally and validates them
