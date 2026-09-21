@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Seed-level export helpers for the v3 Marta/Omar refactor.
+"""Seed-level export helpers for the the validated V3 Aspergillus workflow.
 
 Future model runners should accumulate fold predictions/metrics inside one
 seed and write one CSV per seed. Fold-level files may be temporary, but they

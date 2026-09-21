@@ -4,7 +4,7 @@ seeds: "123-222"  # 100 analysis replicates; not biological replicates.
 families:
   - family1_no_clr_microbiome_raw
   - family2_full_microbiome_clr_raw_env
-  - family3_marta_subset_clr_raw_env
+  - family3_predefined_subset_clr_raw_env
 tasks:
   - occurrence
   - positive_abundance

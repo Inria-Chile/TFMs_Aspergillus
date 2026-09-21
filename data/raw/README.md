@@ -11,10 +11,21 @@ V3 Aspergillus analyses.
   names to original genus names and taxonomic annotations.
 - `checksums.sha256`: SHA-256 checksums for the released raw input files.
 
-The microbiome data are redistributed with permission following acceptance of
-the companion microbiota study:
+## Citation
 
-G. Chauvin, B. Defaye, R. Enaud, M. Rodriguez, D. Vieira, D. Malvy,
-C. Imbert, and L. Delhaes. Urbanization impacts the environmental microbial
-community and its antibiotic phenotypic resistance potential by reshaping the
-diversity and network complexity. Environmental Research. To appear.
+The sample-level microbiome predictors are redistributed with permission. If
+you use these raw input data, please cite the companion microbiota study:
+
+```bibtex
+@misc{chauvin2026urbanization,
+  title = {Urbanization impacts the environmental microbial community and its antibiotic resistome by reshaping the diversity and network complexity},
+  author = {Chauvin, Gautier and Defaye, Baptiste and Enaud, Raphael and Rodriguez, Marion and Vieira, Dânia and Malvy, Denis and Imbert, Christine and Delhaes, Laurence},
+  year = {2026},
+  note = {Available at SSRN},
+  url = {https://ssrn.com/abstract=6988265},
+  doi = {10.2139/ssrn.6988265}
+}
+```
+
+For the machine-learning analyses and consolidated results, cite the associated
+SIMBig 2026 paper listed in the repository `README.md`.

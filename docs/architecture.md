@@ -7,7 +7,7 @@ The public repository has four layers:
 3. `scripts/` orchestrates seed-level execution and aggregation. A seed is complete only after its metric and explainability contracts validate.
 4. `results/` is generated and ignored. Large final artifacts are released separately and pinned by checksums.
 
-The validated V3 package and builders are retained under
-`src/marta_omar_repro/` and `scripts/v3_builders/` for migration provenance
+The validated V3 compatibility layer and builders are retained under
+`src/tfms_aspergillus/v3_workflow/` and `scripts/v3_builders/` for provenance
 and backward-compatible reconstruction. New development should import the
 public package and avoid direct path-dependent calls.

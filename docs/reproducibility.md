@@ -6,7 +6,7 @@ versions, input SHA-256, host, model, scenario, task, metrics, and output
 checksums.
 
 The public repository contains scripts, configuration files, documentation,
-and final consolidated tables. Raw/private data and large result trees remain
+and final consolidated tables. Non-release intermediate data and large result trees remain
 outside Git and are referenced by access instructions or approved archived
 artifacts. A release manifest identifies the exact final tables used by the
 manuscript.

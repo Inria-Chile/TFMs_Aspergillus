@@ -1,9 +1,0 @@
-pandas
-numpy
-scipy
-scikit-learn
-matplotlib
-openpyxl
-
-# Opcional para ejecutar los modelos TFM/TabPFN de Omar:
-# tabpfn

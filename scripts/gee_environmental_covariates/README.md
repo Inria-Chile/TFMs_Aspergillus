@@ -6,7 +6,7 @@ with the Aspergillus prediction study in Aquitaine, France.
 
 The scripts are included for transparency and traceability. They are not part
 of the repository test suite because they depend on Google Earth Engine, on
-project-specific Earth Engine assets under Omar Orellana's INRIA workspace, and
+project-specific Earth Engine assets under the original environmental covariate processing workspace, and
 on terrain derivatives that were produced outside Earth Engine with SAGA GIS
 before being uploaded as Earth Engine assets.
 

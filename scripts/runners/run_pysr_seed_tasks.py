@@ -35,12 +35,12 @@ EXPECTED_FOLDS = {"occurrence": 15, "conditional_abundance": 18, "all_sample_abu
 SCENARIO_LABEL = {"A_environment": "A", "B_microbiome": "B", "C_environment_microbiome": "C"}
 METRIC_COLS = ["AUC", "F1", "MAE", "R2", "RMSE", "balanced_accuracy", "prediction_mean", "complexity"]
 
-sys.path.insert(0, str(REPO / "scripts/legacy_v2"))
+sys.path.insert(0, str(REPO / "scripts/validated_v3"))
 sys.path.insert(0, str(REPO / "src"))
 
-from marta_omar_repro.data import load_table  # noqa: E402
-from run_omar_repro import load_config  # noqa: E402
-from run_pysr_marta_chunk import load_done, run_one  # noqa: E402
+from tfms_aspergillus.v3_workflow.data import load_table  # noqa: E402
+from run_validated_v3_workflow import load_config  # noqa: E402
+from run_pysr_seed_chunk import load_done, run_one  # noqa: E402
 
 
 def csv_list(value: str | None, default: list[str]) -> list[str]:
@@ -258,7 +258,7 @@ def main() -> int:
     ap.add_argument("--family-label", required=True)
     ap.add_argument("--task-kind", choices=sorted(TASK_DIR), required=True)
     ap.add_argument("--tasks-csv", required=True)
-    ap.add_argument("--config", default=str(REPO / "configs/v3_legacy/omar_repro_config.json"))
+    ap.add_argument("--config", default=str(REPO / "configs/validated_v3/v3_repro_config.json"))
     ap.add_argument("--scenarios", default="A_environment,B_microbiome,C_environment_microbiome")
     ap.add_argument("--seeds", default=",".join(str(x) for x in range(123, 223)))
     ap.add_argument("--shard-index", type=int, default=0)

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Build clean v3 seed-level outputs for family 3.
 
-Family 3 is the Marta retained subset strategy with raw environment variables
+Family 3 is the predefined retained predictor subset strategy with raw environment variables
 and selected microbiome variables transformed with CLR
-(`strategy49_marta_subset_raw_env_selected_microbiome_clr`).
+(`strategy49_predefined_subset_raw_env_selected_microbiome_clr`).
 
 The v3 contract is intentionally stricter than v2:
 - write one metrics CSV per seed;
@@ -25,11 +25,11 @@ import pandas as pd
 
 
 REPO = Path(__file__).resolve().parents[2]
-V2 = Path(os.environ.get("ASPERGILLUS_LEGACY_ROOT", REPO / "data/legacy_v2"))
+V2 = Path(os.environ.get("ASPERGILLUS_VALIDATED_V3_ROOT", REPO / "data/validated_v3_sources"))
 V3 = Path(os.environ.get("ASPERGILLUS_REPO_ROOT", REPO))
-FAMILY = "family3_marta_subset_clr_raw_env"
-FAMILY_LABEL = "Family 3: Marta subset + microbiome CLR + raw environment"
-STRATEGY = "strategy49_marta_subset_raw_env_selected_microbiome_clr"
+FAMILY = "family3_predefined_subset_clr_raw_env"
+FAMILY_LABEL = "Family 3: predefined predictor subset with microbiome CLR + raw environment"
+STRATEGY = "strategy49_predefined_subset_raw_env_selected_microbiome_clr"
 AUDIT_DIR = V2 / "outputs/59_family3_deep_search_20260628_2035"
 
 TASK_DIR = {

@@ -17,13 +17,13 @@ import pandas as pd
 FAMILY_SLUG = {
     "family1_no_clr_microbiome_raw": "family_01",
     "family2_full_microbiome_clr_raw_env": "family_02",
-    "family3_marta_subset_clr_raw_env": "family_03",
+    "family3_predefined_subset_clr_raw_env": "family_03",
 }
 
 FAMILY_TITLE = {
     "family1_no_clr_microbiome_raw": "Family 01: Microbiome without CLR",
     "family2_full_microbiome_clr_raw_env": "Family 02: Complete microbiome with CLR",
-    "family3_marta_subset_clr_raw_env": "Family 03: Marta subset with CLR",
+    "family3_predefined_subset_clr_raw_env": "Family 03: predefined predictor subset with CLR",
 }
 
 TASK_SLUG = {

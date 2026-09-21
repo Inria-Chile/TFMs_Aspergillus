@@ -25,10 +25,10 @@ if str(SRC) not in sys.path:
 if str(ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(ROOT / "scripts"))
 
-from marta_omar_repro.data import load_table, write_json
-from marta_omar_repro.environmental_preprocessing import preprocess_train_test_environmental
-from marta_omar_repro.metrics import safe_auc
-from run_omar_repro import load_config
+from tfms_aspergillus.v3_workflow.data import load_table, write_json
+from tfms_aspergillus.v3_workflow.environmental_preprocessing import preprocess_train_test_environmental
+from tfms_aspergillus.v3_workflow.metrics import safe_auc
+from run_validated_v3_workflow import load_config
 
 
 def finite(value: Any) -> float | None:
@@ -169,7 +169,7 @@ def run_pysr(
 
     tmp_root = Path(args.tmp_root)
     tmp_root.mkdir(parents=True, exist_ok=True)
-    worker_dir = tmp_root / f"marta_pysr_{uuid.uuid4().hex[:10]}"
+    worker_dir = tmp_root / f"pysr_worker_{uuid.uuid4().hex[:10]}"
     worker_dir.mkdir(parents=True, exist_ok=True)
     alias_map = build_pysr_alias_map(features)
     variable_names = [alias_map[predictor] for predictor in features]
@@ -344,10 +344,10 @@ def run_one(df: pd.DataFrame, row: pd.Series, cfg: dict, args: argparse.Namespac
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default=str(ROOT / "config" / "omar_repro_config.json"))
+    ap.add_argument("--config", default=str(ROOT / "config" / "v3_repro_config.json"))
     ap.add_argument("--tasks-csv", required=True)
     ap.add_argument("--out-jsonl", required=True)
-    ap.add_argument("--output-dir", default=str(ROOT / "outputs" / "21_pysr_marta"))
+    ap.add_argument("--output-dir", default=str(ROOT / "outputs" / "21_pysr_symbolic_regression"))
     ap.add_argument("--shard-index", type=int, default=0)
     ap.add_argument("--num-shards", type=int, default=1)
     ap.add_argument("--resume", action="store_true")

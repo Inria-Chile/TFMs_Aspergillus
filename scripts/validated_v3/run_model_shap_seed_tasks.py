@@ -22,11 +22,11 @@ if str(SRC) not in sys.path:
 if str(ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(ROOT / "scripts"))
 
-from marta_omar_repro.data import load_table, write_json
-from marta_omar_repro.environmental_preprocessing import preprocess_train_test_environmental
-from marta_omar_repro.metrics import safe_auc
-from marta_omar_repro.models import impute_train_test, rf_classifier, rf_regressor, tabpfn_classifier, tabpfn_regressor
-from marta_omar_repro.shap_utils import (
+from tfms_aspergillus.v3_workflow.data import load_table, write_json
+from tfms_aspergillus.v3_workflow.environmental_preprocessing import preprocess_train_test_environmental
+from tfms_aspergillus.v3_workflow.metrics import safe_auc
+from tfms_aspergillus.v3_workflow.models import impute_train_test, rf_classifier, rf_regressor, tabpfn_classifier, tabpfn_regressor
+from tfms_aspergillus.v3_workflow.shap_utils import (
     ShapConfig,
     finite,
     kernel_shap,
@@ -36,17 +36,17 @@ from marta_omar_repro.shap_utils import (
     tree_shap,
     xgboost_pred_contribs,
 )
-from build_tabiclv2_marta_tasks import (
+from build_tabiclv2_tasks import (
     build_abundance_15a,
     build_abundance_16a,
     build_occurrence_15a,
     build_occurrence_16a,
 )
-from run_omar_repro import load_config, parse_seeds
-from run_tabiclv2_marta_chunk import make_model as make_tabicl_model
-from run_tabiclv2_marta_chunk import resolve_device as resolve_tabicl_device
-from run_xgboost_marta import make_classifier as make_xgb_classifier
-from run_xgboost_marta import make_regressor as make_xgb_regressor
+from run_validated_v3_workflow import load_config, parse_seeds
+from run_tabiclv2_seed_chunk import make_model as make_tabicl_model
+from run_tabiclv2_seed_chunk import resolve_device as resolve_tabicl_device
+from run_xgboost_seed_tasks import make_classifier as make_xgb_classifier
+from run_xgboost_seed_tasks import make_regressor as make_xgb_regressor
 
 
 def dumps(value: Any) -> str:
@@ -398,9 +398,9 @@ def consolidate(run_dir: Path) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default=str(ROOT / "config" / "omar_repro_config.json"))
+    ap.add_argument("--config", default=str(ROOT / "config" / "v3_repro_config.json"))
     ap.add_argument("--model", choices=["random_forest", "xgboost", "tabpfn", "tabiclv2"], required=True)
-    ap.add_argument("--output-dir", default=str(ROOT / "outputs" / "33_model_shap_marta"))
+    ap.add_argument("--output-dir", default=str(ROOT / "outputs" / "33_model_shap"))
     ap.add_argument("--run-tag", default="")
     ap.add_argument("--tasks-csv", default="")
     ap.add_argument("--seeds", default=",".join(map(str, range(123, 223))))

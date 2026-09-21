@@ -18,14 +18,14 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from marta_omar_repro.data import detect_blocks, load_table, medium_labels, write_json
-from marta_omar_repro.metrics import (
+from tfms_aspergillus.v3_workflow.data import detect_blocks, load_table, medium_labels, write_json
+from tfms_aspergillus.v3_workflow.metrics import (
     classification_metrics,
     regression_metrics,
     safe_auc,
     summarize_classification,
 )
-from marta_omar_repro.models import (
+from tfms_aspergillus.v3_workflow.models import (
     impute_train_test,
     rf_classifier,
     rf_regressor,
@@ -34,7 +34,7 @@ from marta_omar_repro.models import (
     tabpfn_classifier,
     tabpfn_regressor,
 )
-from marta_omar_repro.plots import (
+from tfms_aspergillus.v3_workflow.plots import (
     classification_summary_plot,
     global_oof_roc_plot,
     importance_plot,
@@ -787,7 +787,7 @@ def regression_seed_dispersion_plot(seed_summary: pd.DataFrame, out_stem: Path, 
     ax.set_ylabel("RMSE por semilla")
     ax.set_title(title)
     ax.grid(axis="y", alpha=0.25)
-    from marta_omar_repro.plots import save_fig
+    from tfms_aspergillus.v3_workflow.plots import save_fig
 
     save_fig(fig, out_stem)
 
@@ -927,7 +927,7 @@ def consolidate_16a(out_dir: Path, seeds: list[int]) -> None:
 
 
 def consolidate_multiseed(outputs: Path, seeds: list[int]) -> None:
-    consolidate_15a(outputs / "15A_omar_repro", seeds)
+    consolidate_15a(outputs / "15A_validated_v3_workflow", seeds)
     consolidate_16a(outputs / "16A_rfbest_occurrence", seeds)
     write_json(outputs / "multiseed_metadata.json", {"seeds": seeds, "n_seeds": len(seeds)})
 
@@ -957,7 +957,7 @@ def descriptive_profile(df: pd.DataFrame, cfg: dict, out_dir: Path) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", default=str(ROOT / "config" / "omar_repro_config.json"))
+    parser.add_argument("--config", default=str(ROOT / "config" / "v3_repro_config.json"))
     parser.add_argument("--all", action="store_true")
     parser.add_argument("--run-15a", action="store_true")
     parser.add_argument("--run-16a", action="store_true")
@@ -1000,7 +1000,7 @@ def main() -> int:
         cfg_single["random_state"] = int(seeds[0])
         print(f"=== Running seed {seeds[0]} ===", flush=True)
         if args.all or args.run_15a:
-            run_15a(df, cfg_single, outputs / "15A_omar_repro", run_tabpfn)
+            run_15a(df, cfg_single, outputs / "15A_validated_v3_workflow", run_tabpfn)
         if args.all or args.run_16a:
             run_16a(df, cfg_single, outputs / "16A_rfbest_occurrence", run_tabpfn)
         if args.all or args.run_16b:
@@ -1012,7 +1012,7 @@ def main() -> int:
             seed_suffix = f"seed_{seed}"
             print(f"=== Running seed {seed} ===", flush=True)
             if args.all or args.run_15a:
-                run_15a(df, cfg_seed, outputs / "15A_omar_repro" / "per_seed" / seed_suffix, run_tabpfn)
+                run_15a(df, cfg_seed, outputs / "15A_validated_v3_workflow" / "per_seed" / seed_suffix, run_tabpfn)
             if args.all or args.run_16a:
                 run_16a(df, cfg_seed, outputs / "16A_rfbest_occurrence" / "per_seed" / seed_suffix, run_tabpfn)
             if args.all or args.run_16b:

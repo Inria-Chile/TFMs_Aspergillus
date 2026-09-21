@@ -21,9 +21,9 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from marta_omar_repro.data import load_table, write_json
-from marta_omar_repro.metrics import safe_auc
-from run_omar_repro import load_config
+from tfms_aspergillus.v3_workflow.data import load_table, write_json
+from tfms_aspergillus.v3_workflow.metrics import safe_auc
+from run_validated_v3_workflow import load_config
 
 
 def finite(value: Any) -> float | None:
@@ -248,10 +248,10 @@ def run_one(df: pd.DataFrame, row: pd.Series, cfg: dict, args: argparse.Namespac
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default=str(ROOT / "config" / "omar_repro_config.json"))
+    ap.add_argument("--config", default=str(ROOT / "config" / "v3_repro_config.json"))
     ap.add_argument("--tasks-csv", required=True)
     ap.add_argument("--out-jsonl", required=True)
-    ap.add_argument("--output-dir", default=str(ROOT / "outputs" / "17_tabiclv2_marta"))
+    ap.add_argument("--output-dir", default=str(ROOT / "outputs" / "17_tabiclv2"))
     ap.add_argument("--device", default="auto")
     ap.add_argument("--shard-index", type=int, default=0)
     ap.add_argument("--num-shards", type=int, default=1)

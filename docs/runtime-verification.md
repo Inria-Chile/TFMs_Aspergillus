@@ -9,7 +9,7 @@ described as the exact historical production dependency.
 
 - `tabicl==2.0.2` was installed in the `tabicl-gpu` environment on `musa-2`.
   The package metadata did not retain a Git commit or a `direct_url.json`.
-- `tabpfn==8.0.7` was installed in the historical `marta_tabpfn` environment.
+- `tabpfn==8.0.7` was installed in the historical TabPFN runtime environment.
 - `pysr==1.5.9` was installed in the historical PySR environment used for
   the V3 seed runner.
 - `SymbolicRegression.jl==1.11.3` was recovered from its Julia project

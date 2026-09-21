@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Generate column-filtered integrated importance heatmaps for Marta v3.
+"""Generate column-filtered integrated importance heatmaps for validated V3 Aspergillus workflow.
 
 This runner reuses the project's existing loader and ranking logic, merges the
-latest SHAP consolidation over the legacy backfill, and retains only scenario
+latest SHAP consolidation over the reference consolidation, and retains only scenario
 C (Environment + Microbiome) for each preprocessing family.  The result is
 therefore nine columns: three task blocks x three preprocessing families.
 """
@@ -44,25 +44,25 @@ def load_module(path: Path):
     return module
 
 
-def merge_shap(legacy_path: Path, latest_path: Path, output_path: Path) -> Path:
-    legacy = pd.read_csv(legacy_path)
+def merge_shap(reference_path: Path, latest_path: Path, output_path: Path) -> Path:
+    reference = pd.read_csv(reference_path)
     latest = pd.read_csv(latest_path)
-    if "feature_display" in legacy.columns and "feature_display_name" not in legacy.columns:
-        legacy = legacy.rename(columns={"feature_display": "feature_display_name"})
+    if "feature_display" in reference.columns and "feature_display_name" not in reference.columns:
+        reference = reference.rename(columns={"feature_display": "feature_display_name"})
     key = ["family", "task", "scenario", "model", "feature"]
     required = key + ["mean_abs_shap", "sd_abs_shap", "n_seeds"]
-    missing = [c for c in required if c not in legacy.columns or c not in latest.columns]
+    missing = [c for c in required if c not in reference.columns or c not in latest.columns]
     if missing:
         raise ValueError(f"SHAP source missing columns: {missing}")
     # Keep the latest consolidated value for a key and use the historical
     # backfill only where the latest consolidation has no row.
     latest_keys = set(map(tuple, latest[key].astype(str).itertuples(index=False, name=None)))
-    legacy_fallback = legacy[
-        ~legacy[key].astype(str).apply(tuple, axis=1).isin(latest_keys)
+    reference_fallback = reference[
+        ~reference[key].astype(str).apply(tuple, axis=1).isin(latest_keys)
     ].copy()
-    columns = sorted(set(legacy.columns) | set(latest.columns))
+    columns = sorted(set(reference.columns) | set(latest.columns))
     merged = pd.concat(
-        [latest.reindex(columns=columns), legacy_fallback.reindex(columns=columns)],
+        [latest.reindex(columns=columns), reference_fallback.reindex(columns=columns)],
         ignore_index=True,
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -201,7 +201,7 @@ def process_model(project, model: str, args, shap_summary: Path, output_root: Pa
 def parse_args():
     p = argparse.ArgumentParser()
     p.add_argument("--heatmap-module", type=Path, required=True)
-    p.add_argument("--legacy-shap", type=Path, required=True)
+    p.add_argument("--reference-shap", type=Path, required=True)
     p.add_argument("--latest-shap", type=Path, required=True)
     p.add_argument("--pysr-summary", type=Path, required=True)
     p.add_argument("--pysr-reg50-summary", type=Path, required=True)
@@ -214,7 +214,7 @@ def parse_args():
 def main():
     args = parse_args()
     project = load_module(args.heatmap_module)
-    merged = merge_shap(args.legacy_shap, args.latest_shap, args.output_dir / "tables" / "merged_latest_shap_mean_abs_by_feature.csv")
+    merged = merge_shap(args.reference_shap, args.latest_shap, args.output_dir / "tables" / "merged_latest_shap_mean_abs_by_feature.csv")
     for model in MODEL_ORDER:
         process_model(project, model, args, merged, args.output_dir)
 

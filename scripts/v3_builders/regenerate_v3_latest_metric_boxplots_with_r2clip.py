@@ -43,8 +43,8 @@ FAMILIES = [
         "Full CLR preprocessing",
     ),
     (
-        "family3_marta_subset_clr_raw_env",
-        "Family 3: Marta subset + microbiome CLR + raw environment",
+        "family3_predefined_subset_clr_raw_env",
+        "Family 3: predefined predictor subset with microbiome CLR + raw environment",
         "family_03",
         "Subset CLR preprocessing",
     ),

@@ -20,12 +20,8 @@ public final-result bundle included in this repository focuses on
 
 This repository contains code, provenance records, consolidated result
 tables, and the authorized sample-level machine-learning input table. The
-microbiome data are redistributed with permission following acceptance of the
-companion microbiota study by G. Chauvin, B. Defaye, R. Enaud, M. Rodriguez,
-D. Vieira, D. Malvy, C. Imbert, and L. Delhaes, *Urbanization impacts the
-environmental microbial community and its antibiotic phenotypic resistance
-potential by reshaping the diversity and network complexity*, Environmental
-Research, to appear.
+underlying microbiome data are redistributed with permission; citation details
+are provided in the Data citation section.
 The upstream Google Earth Engine scripts used to derive the environmental
 covariates are provided as provenance code in
 `scripts/gee_environmental_covariates/`; they document the remote-sensing and
@@ -139,7 +135,7 @@ are documented as a reproducibility limitation.
 Additional conventions:
 
 - `docs/glossary.md` defines abbreviations and response labels.
-- `configs/reproducibility.yaml` defines the canonical 100-seed experiment
+- `configs/reproducibility.yaml` defines the canonical experiment
   matrix.
 - SHAP products are written separately to `results/raw_shap/` and
   `results/normalized_shap/`; the latter uses column-maximum normalization
@@ -148,3 +144,33 @@ Additional conventions:
   `--top-n`.
 - RF-reference population tests use `scripts/statistical_tests.py` and yield
   one p-value per model comparison within family, task, and scenario.
+
+## Data citation
+
+If you use this repository, the released machine-learning input tables, or the
+consolidated result tables, please cite the associated SIMBig 2026
+paper:
+
+```bibtex
+@inproceedings{orellana2026tfms,
+  title = {Do TFMs Reduce the Need for Statistical Preprocessing in Small-Sample Excess-Zero Environmental Microbiome Data?},
+  author = {Orellana, Omar and Valenzuela, Luis and Marti, Luis and Chauvin, Gautier and Enaud, Raphael and Delhaes, Laurence and Avalos-Fernandez, Marta},
+  booktitle = {Proceedings of The International Conference on Information Management and Big Data (SIMBig)},
+  year = {2026},
+  note = {To appear}
+}
+```
+
+The underlying microbiome data originate from the companion microbiota study. If
+you use the raw microbiome input data under `data/raw/`, please also cite:
+
+```bibtex
+@misc{chauvin2026urbanization,
+  title = {Urbanization impacts the environmental microbial community and its antibiotic resistome by reshaping the diversity and network complexity},
+  author = {Chauvin, Gautier and Defaye, Baptiste and Enaud, Raphael and Rodriguez, Marion and Vieira, Dânia and Malvy, Denis and Imbert, Christine and Delhaes, Laurence},
+  year = {2026},
+  note = {Available at SSRN},
+  url = {https://ssrn.com/abstract=6988265},
+  doi = {10.2139/ssrn.6988265}
+}
+```

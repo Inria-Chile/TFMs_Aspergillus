@@ -23,10 +23,10 @@ if str(SRC) not in sys.path:
 if str(ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(ROOT / "scripts"))
 
-from marta_omar_repro.data import detect_blocks, load_table, write_json
-from marta_omar_repro.metrics import safe_auc
-from marta_omar_repro.models import impute_train_test, select_features_inside_fold
-from run_omar_repro import load_config, parse_seeds, scenario_map
+from tfms_aspergillus.v3_workflow.data import detect_blocks, load_table, write_json
+from tfms_aspergillus.v3_workflow.metrics import safe_auc
+from tfms_aspergillus.v3_workflow.models import impute_train_test, select_features_inside_fold
+from run_validated_v3_workflow import load_config, parse_seeds, scenario_map
 
 
 def safe_name(*parts: Any, max_len: int = 180) -> str:
@@ -602,8 +602,8 @@ def consolidate(run_dir: Path) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default=str(ROOT / "config" / "omar_repro_config.json"))
-    ap.add_argument("--output-dir", default=str(ROOT / "outputs" / "32_xgboost_marta" / "xgboost_marta_100seeds_v1"))
+    ap.add_argument("--config", default=str(ROOT / "config" / "v3_repro_config.json"))
+    ap.add_argument("--output-dir", default=str(ROOT / "outputs" / "32_xgboost" / "xgboost_100seeds_v1"))
     ap.add_argument("--seeds", default=",".join(map(str, range(123, 223))))
     ap.add_argument("--build-tasks-only", action="store_true")
     ap.add_argument("--consolidate-only", action="store_true")

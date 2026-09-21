@@ -15,7 +15,7 @@ xgboost_validation:
   note: current GPU probe with V3 data; historical production environment version remains unverified
 tabpfn: 8.0.7
 tabpfn_environment:
-  path: /home/lvalenzuela/miniconda3/envs/marta_tabpfn
+  path: <site-specific tabpfn runtime environment>
   python: 3.10.20
 torch: 2.5.1
 tabicl: 2.0.2
@@ -59,4 +59,4 @@ data:
   sha256: 9be1cc63cbc8c5b57ed32d45159b69cd8198b8b376a7bff1c93b20dc0c062b17
   size_bytes: 298403
   source_version: v2_shared_storage_copy_used_for_gpu_probe
-  access: private_initial_release
+  access: restricted_initial_release

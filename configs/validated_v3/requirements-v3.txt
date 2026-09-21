@@ -1,0 +1,9 @@
+pandas
+numpy
+scipy
+scikit-learn
+matplotlib
+openpyxl
+
+# Optional packages for running tabular foundation model backends:
+# tabpfn

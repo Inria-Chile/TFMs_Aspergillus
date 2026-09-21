@@ -8,7 +8,7 @@ from the environments that remain available on the allocated Sophia nodes.
 | Workload | Environment | Python | Verified packages |
 |---|---|---:|---|
 | TabICLv2 and shared GPU utilities | `tabicl-gpu` | 3.10.19 | NumPy 2.2.6; pandas 2.3.3; SciPy 1.15.2; scikit-learn 1.7.2; SHAP 0.49.1; PyTorch 2.5.1; `tabicl` 2.0.2; PySR 1.5.9 |
-| TabPFN | `marta_tabpfn` | 3.10.20 | NumPy 2.2.6; pandas 2.3.3; SciPy 1.15.3; scikit-learn 1.7.2; SHAP 0.49.1; PyTorch 2.12.0; `tabpfn` 8.0.7 |
+| TabPFN | `tabpfn_runtime` | 3.10.20 | NumPy 2.2.6; pandas 2.3.3; SciPy 1.15.3; scikit-learn 1.7.2; SHAP 0.49.1; PyTorch 2.12.0; `tabpfn` 8.0.7 |
 | PySR seed runner | `cyt_models_nancy_clone_sophia` | 3.10.19 | NumPy 2.2.6; pandas 2.3.3; SciPy 1.15.3; scikit-learn 1.7.2; SHAP 0.49.1; PyTorch 2.9.0; PySR 1.5.9 |
 | Historical PySR comparison environment | `pysr_pheno_sophia` | 3.10.15 | NumPy 1.26.4; pandas 2.2.2; SciPy 1.13.1; scikit-learn 1.5.1; PyTorch 2.5.0; PySR 1.5.10 |
 

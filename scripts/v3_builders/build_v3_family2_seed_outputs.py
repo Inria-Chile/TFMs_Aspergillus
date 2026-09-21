@@ -17,7 +17,7 @@ import pandas as pd
 
 
 REPO = Path(__file__).resolve().parents[2]
-V2 = Path(os.environ.get("ASPERGILLUS_LEGACY_ROOT", REPO / "data/legacy_v2"))
+V2 = Path(os.environ.get("ASPERGILLUS_VALIDATED_V3_ROOT", REPO / "data/validated_v3_sources"))
 V3 = Path(os.environ.get("ASPERGILLUS_REPO_ROOT", REPO))
 FAMILY = "family2_full_microbiome_clr_raw_env"
 FAMILY_LABEL = "Family 2: full microbiome CLR + raw environment"

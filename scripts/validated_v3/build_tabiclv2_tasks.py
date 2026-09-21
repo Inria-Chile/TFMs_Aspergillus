@@ -17,9 +17,9 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from marta_omar_repro.data import detect_blocks, load_table
-from marta_omar_repro.models import select_features_inside_fold
-from run_omar_repro import load_config, parse_seeds, scenario_map
+from tfms_aspergillus.v3_workflow.data import detect_blocks, load_table
+from tfms_aspergillus.v3_workflow.models import select_features_inside_fold
+from run_validated_v3_workflow import load_config, parse_seeds, scenario_map
 
 
 def safe_id(*parts: object) -> str:
@@ -204,8 +204,8 @@ def build_abundance_16a(df: pd.DataFrame, cfg: dict, seeds: list[int]) -> list[d
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default=str(ROOT / "config" / "omar_repro_config.json"))
-    ap.add_argument("--output-csv", default=str(ROOT / "monitoring" / "tabiclv2_marta" / "tasks.csv"))
+    ap.add_argument("--config", default=str(ROOT / "config" / "v3_repro_config.json"))
+    ap.add_argument("--output-csv", default=str(ROOT / "monitoring" / "tabiclv2" / "tasks.csv"))
     ap.add_argument("--seeds", default=None)
     ap.add_argument("--n-seeds", type=int, default=10)
     ap.add_argument("--include-full", action="store_true", help="Also run full high-dimensional variants.")

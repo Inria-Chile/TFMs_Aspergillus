@@ -1,2 +1,2 @@
-Copied from validated V3: src/marta_omar_repro, scripts/v3_builders, config.
-Do not commit private/raw data or full historical outputs. Use docs/final-results-manifest.md.
+Validated V3 workflow compatibility layer, builders, and configuration.
+Do not commit non-release intermediate outputs or full historical result trees. Use docs/final-results-manifest.md.

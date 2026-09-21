@@ -28,19 +28,19 @@ import pandas as pd
 FAMILY_ORDER = [
     "family1_no_clr_microbiome_raw",
     "family2_full_microbiome_clr_raw_env",
-    "family3_marta_subset_clr_raw_env",
+    "family3_predefined_subset_clr_raw_env",
 ]
 
 FAMILY_TO_SCHEME = {
     "family1_no_clr_microbiome_raw": "without_clr",
     "family2_full_microbiome_clr_raw_env": "with_clr",
-    "family3_marta_subset_clr_raw_env": "subset_with_clr",
+    "family3_predefined_subset_clr_raw_env": "subset_with_clr",
 }
 
 FAMILY_TITLE = {
     "family1_no_clr_microbiome_raw": "Without CLR",
     "family2_full_microbiome_clr_raw_env": "With CLR",
-    "family3_marta_subset_clr_raw_env": "Subset with CLR",
+    "family3_predefined_subset_clr_raw_env": "Subset with CLR",
 }
 
 TASK_ORDER = ["classification", "regression_18_positive", "regression_50_all_samples"]
