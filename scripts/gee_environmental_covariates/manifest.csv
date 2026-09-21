@@ -1,0 +1,20 @@
+order,file,purpose,main_outputs_or_covariates
+1,01_Study_Area_Definition_Aquitaine_France.js,Defines the Aquitaine study area and sampling context,ROI and sample layers
+2,02_DEM_Slope_Aspect_Aquitaine_France.js,Prepares elevation slope and aspect products,elevation_m; slope_pct; aspect-derived variables
+3,03_Landsat_NDFI_DynamicWorld_Aquitaine_France.js,Builds Landsat and Dynamic World land-cover covariates,NDFI; trees; built; crops
+4,04_PCA_Landsat_Aquitaine_France.js,Computes Landsat principal components,LS_PC1; LS_PC2
+5,05_Sentinel5P_Atmospheric_Covariates_Aquitaine_France.js,Prepares Sentinel-5P atmospheric covariates,NO2_mean; SO2_mean; CO_mean candidate; HCHO_mean; AER_AI_mean
+6,06_Human_Impact_Covariates_PopDensity_BuiltVolume_Aquitaine_France.js,Prepares human population and built-volume covariates,HPD; HBV
+7,07_Human_Footprint_HFI_Aquitaine_France.js,Prepares Human Footprint Index,HFI
+8,08_Global_Human_Modification_gHM_Aquitaine_France.js,Prepares Human Modification Index,HMI
+9,09_SoilGrids_SOC_pH_Aquitaine_France.js,Prepares SoilGrids soil covariates,pH_0_5cm; SOC_0_5cm_pct
+10,10_MODIS_Monthly_Temperature_Aquitaine_France.js,Builds monthly MODIS temperature products,Monthly temperature rasters
+11,11_PCA_MODIS_Temperature_Aquitaine_France.js,Computes temperature principal components,T_PC1; T_PC2
+12,12_CHIRPS_Monthly_Precipitation_Aquitaine_France.js,Builds monthly CHIRPS precipitation products,Monthly precipitation rasters
+13,13_PCA_CHIRPS_Precipitation_Aquitaine_France.js,Computes precipitation principal components,P_PC1; P_PC2
+14,14_Distance_to_Sea_Aquitaine_France.js,Computes distance to sea,dist_sea
+15,15_Distance_to_Rivers_Aquitaine_France.js,Computes distance to rivers,dist_river_m
+16,16_Urban_Areas_and_Distance_Aquitaine_France.js,Computes distance to urban areas,dist_urban
+17,17_GWA_WindSpeed_10m_Aquitaine_France.js,Prepares Global Wind Atlas wind-speed covariate,wind_speed_10m
+18,18_VIIRS_Nighttime_Lights_Aquitaine_France.js,Prepares VIIRS nighttime-light covariate,NTL
+19,19_Final_Covariate_Stack_and_Extraction_Aquitaine_France.js,Combines retained covariates and extracts values at sampling sites,Final 36-variable environmental analytical stack

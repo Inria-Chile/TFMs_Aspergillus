@@ -20,6 +20,10 @@ public final-result bundle included in this repository focuses on
 
 This repository contains code, provenance records, and consolidated result
 tables. Raw sample-level inputs are intentionally excluded from Git.
+The upstream Google Earth Engine scripts used to derive the environmental
+covariates are provided as provenance code in
+`scripts/gee_environmental_covariates/`; they document the remote-sensing and
+GIS processing layer but require external Earth Engine assets to rerun.
 
 ## Layout
 
@@ -27,6 +31,8 @@ tables. Raw sample-level inputs are intentionally excluded from Git.
 configs/                 YAML experiment definitions
 src/tfms_aspergillus/    reusable data, splits, preprocessing, metrics
 scripts/                 reproducible command-line entry points
+scripts/gee_environmental_covariates/
+                         Google Earth Engine environmental provenance code
 tests/                   unit and contract tests
 docs/                    protocol, data dictionary, provenance
 data/raw/                user-provided data (ignored by Git)
