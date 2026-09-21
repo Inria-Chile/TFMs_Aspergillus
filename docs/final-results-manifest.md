@@ -18,7 +18,6 @@ seeds. The three PySR classification metrics for the predefined subset with
 CLR were replaced by complete 100-seed series from the validated batch `403`;
 this resolves the earlier 60-seed public-table gap.
 
-The bundle contains no figures, raw sample-level input data, fold-level
-monitoring tree, or model checkpoints.
-
-Raw sample-level inputs and model checkpoints are not redistributed.
+The bundle contains no figures, fold-level monitoring tree, or model
+checkpoints. The authorized sample-level input table and microbiome dictionary
+are distributed separately under `data/raw/`.

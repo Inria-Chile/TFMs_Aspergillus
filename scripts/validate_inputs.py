@@ -7,7 +7,7 @@ import pandas as pd
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--table", default="data/raw/aspergillus_predictors.csv")
-    parser.add_argument("--target", default="Aspergillus_abundance")
+    parser.add_argument("--target", default="F_Aspergillus")
     args = parser.parse_args()
     frame = pd.read_csv(args.table)
     if args.target not in frame:

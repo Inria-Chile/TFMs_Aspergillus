@@ -18,8 +18,14 @@ public final-result bundle included in this repository focuses on
 `C_environment_microbiome`; the broader configuration matrix is preserved in
 `configs/reproducibility.yaml`.
 
-This repository contains code, provenance records, and consolidated result
-tables. Raw sample-level inputs are intentionally excluded from Git.
+This repository contains code, provenance records, consolidated result
+tables, and the authorized sample-level machine-learning input table. The
+microbiome data are redistributed with permission following acceptance of the
+companion microbiota study by G. Chauvin, B. Defaye, R. Enaud, M. Rodriguez,
+D. Vieira, D. Malvy, C. Imbert, and L. Delhaes, *Urbanization impacts the
+environmental microbial community and its antibiotic phenotypic resistance
+potential by reshaping the diversity and network complexity*, Environmental
+Research, to appear.
 The upstream Google Earth Engine scripts used to derive the environmental
 covariates are provided as provenance code in
 `scripts/gee_environmental_covariates/`; they document the remote-sensing and
@@ -35,7 +41,7 @@ scripts/gee_environmental_covariates/
                          Google Earth Engine environmental provenance code
 tests/                   unit and contract tests
 docs/                    protocol, data dictionary, provenance
-data/raw/                user-provided data (ignored by Git)
+data/raw/                authorized ML input table and microbiome dictionary
 data/processed/          derived data (ignored by Git)
 results/                 generated figures/tables (ignored by Git)
 ```
@@ -59,7 +65,9 @@ backends must share one Python environment.
 
 ## Reproduce from raw seed outputs
 
-1. Place the input table in `data/raw/` and update `configs/default.yaml`.
+1. Verify that `data/raw/aspergillus_predictors.csv` and
+   `data/raw/01A_dictionary_taxa.csv` are present, or replace them with another
+   approved dataset and update `configs/default.yaml`.
 2. Run `python scripts/validate_inputs.py`.
 3. Run the CPU smoke/metadata entry point with `python scripts/run_seed_experiment.py --config configs/default.yaml --seed 0`.
 4. Run a model adapter with `python scripts/runners/run_gpu_seed_tasks.py --help`
@@ -103,9 +111,9 @@ title-free manuscript variants. The consolidated bundle is checked by
 
 Every run must write its resolved configuration, software versions, seed,
 input checksum, host, and output checksum to a provenance record. Results
-from the final study are described in `docs/final-results-manifest.md`; raw
-inputs, model checkpoints, and large fold-level result trees are intentionally
-excluded from source control.
+from the final study are described in `docs/final-results-manifest.md`; model
+checkpoints and large fold-level result trees are intentionally excluded from
+source control.
 
 ## Methodological safeguards
 
@@ -124,10 +132,9 @@ excluded from source control.
 
 The repository is derived from the validated V3 implementation. Exact
 versions that were observed in the historical environments are recorded in
-`docs/runtime-manifest.yaml` and `docs/environment-matrix.md`. The raw input
-data are not redistributed. The original TabICLv2 checkpoint hashes remain
-unavailable for independent verification and are documented as a
-reproducibility limitation.
+`docs/runtime-manifest.yaml` and `docs/environment-matrix.md`. The original
+TabICLv2 checkpoint hashes remain unavailable for independent verification and
+are documented as a reproducibility limitation.
 
 Additional conventions:
 

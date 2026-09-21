@@ -5,6 +5,10 @@ __pycache__/
 .ruff_cache/
 *.egg-info/
 data/raw/*
+!data/raw/README.md
+!data/raw/checksums.sha256
+!data/raw/aspergillus_predictors.csv
+!data/raw/01A_dictionary_taxa.csv
 data/processed/*
 results/*
 !results/.gitkeep

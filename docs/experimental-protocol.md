@@ -100,14 +100,17 @@ unscaled values and their dispersion remain in the tabular product.
 
 ## Reproduction order
 
-1. Obtain the approved input table and microbiome dictionary.
-2. Record their SHA-256 checksums and place them under `data/raw/`.
+1. Validate the approved input table and microbiome dictionary under
+   `data/raw/`.
+2. Record or verify their SHA-256 checksums.
 3. Resolve the configuration and generate the fold/task manifest.
 4. Run seed-level model jobs with disjoint seeds and explicit GPU IDs.
 5. Validate metric, prediction, SHAP, and equation exports.
 6. Build the consolidated tables with `scripts/build_final_tables.py`.
 7. Generate boxplots and heatmaps with `scripts/plot_final_results.py`.
 
-The repository includes consolidated tabular results but not the sample-level
-input data. External end-to-end reproduction therefore requires authorized
-access to the inputs; figures remain reproducible from the consolidated tables.
+The repository includes the authorized sample-level input data, consolidated
+tabular results, and plotting code. External reproduction still requires the
+model-specific software environments described in `docs/environment-matrix.md`;
+figures remain reproducible from the consolidated tables without rerunning all
+seed-level jobs.

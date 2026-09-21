@@ -1,11 +1,11 @@
 # Input data schema
 
-The default configuration expects the following files under `data/raw/`:
+The default configuration uses the following files under `data/raw/`:
 
-- `aspergillus_predictors.csv`: an authorized local table with one row per
-  environmental sample;
-- `01A_dictionary_taxa.csv`: an authorized local mapping between anonymized
-  microbiome predictor names and their biological names.
+- `aspergillus_predictors.csv`: the authorized sample-level table with one row
+  per environmental sample;
+- `01A_dictionary_taxa.csv`: the authorized mapping between anonymized
+  microbiome predictor names, original genus names, and taxonomic annotations.
 
 The predictor table must contain the sample identifier `Sample` and the
 response `F_Aspergillus`, as specified in `configs/default.yaml`. This is the
@@ -23,6 +23,6 @@ stack used by V3 contains 36 variables. The candidate variables `CO_mean`,
 `landforms`, and `geomorphons` are documented there but were not retained in
 the ML input matrix.
 
-This repository does not redistribute either input file. The workflow must be
-run only after the user supplies authorized copies locally and validates them
-with `scripts/validate_inputs.py`.
+Both input files are included in this repository with permission. Validate them
+with `scripts/validate_inputs.py` before launching new end-to-end analyses or
+after replacing them with a different approved dataset.
